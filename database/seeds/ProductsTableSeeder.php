@@ -1,5 +1,6 @@
 <?php
 
+use App\Order;
 use App\Picture;
 use App\Product;
 use Illuminate\Database\Seeder;
@@ -24,6 +25,9 @@ class ProductsTableSeeder extends Seeder
 
             $prod->pictures()->attach($pict);
 
+            $order = Order::find($faker->numberBetween(2,20));
+
+            $prod->orders()->attach($order, array('quantity' => $faker->numberBetween(1,5)));
         }
     }
 }
