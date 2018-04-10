@@ -20,6 +20,7 @@ class TruncateTables extends Seeder
         Schema::disableForeignKeyConstraints();
         DB::table('picture_product')->truncate();
         DB::table('order_product')->truncate();
+        DB::table('order_user')->truncate();
         Order::truncate();
         Picture::truncate();
         Activitie::truncate();
