@@ -1,9 +1,9 @@
 <?php
 
-use App\Picture;
+use App\Product;
 use Illuminate\Database\Seeder;
 
-class PicturesTableSeeder extends Seeder
+class ProductsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,12 +12,12 @@ class PicturesTableSeeder extends Seeder
      */
     public function run()
     {
-
         $faker = \Faker\Factory::create();
 
         for($i=0; $i<20; $i++){
-            Picture::create([
-                'url' => $faker->imageUrl(640,480)
+            Product::create([
+                'name' => $faker->domainWord,
+                'price' => $faker->numberBetween(0,70)
             ]);
         }
     }
