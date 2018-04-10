@@ -23,12 +23,17 @@ class Picture extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->hasMany('App\User');
     }
 
     public function comments()
     {
         return $this->hasMany('App\Comment');
+    }
+
+    public function activities()
+    {
+        return $this->belongsTo('App\Activitie');
     }
 
 }

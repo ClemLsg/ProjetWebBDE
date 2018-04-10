@@ -1,6 +1,8 @@
 <?php
 
 use App\Activitie;
+use App\Picture;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class ActivitiesSeeder extends Seeder
@@ -17,13 +19,21 @@ class ActivitiesSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         for($i=0; $i<20; $i++){
-            Activitie::create([
+            $acti = Activitie::create([
                 'name' => $faker->domainWord,
                 'description' => $faker->realText(150),
                 'recurrent' => $faker->numberBetween(0,1),
                 'price' => $faker->numberBetween(0,100),
                 'date' => $faker->date()
             ]);
+
+            $user = User::find($faker->numberBetween(1,20));
+
+            $pict = Picture::find($faker->numberBetween(2,20));
+
+            $acti->pictures()->save($pict);
+
+            $user->propose()->save($acti);
         }
     }
 }

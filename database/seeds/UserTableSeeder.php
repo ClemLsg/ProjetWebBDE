@@ -1,5 +1,6 @@
 <?php
 
+use App\Picture;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -22,6 +23,10 @@ class UserTableSeeder extends Seeder
                 'surname' => $faker->lastName,
                 'rank' => $faker->numberBetween(0,2),
             ]);
+
+            $pict = Picture::find(1);
+
+            $pict->user()->save($user);
 
         }
     }
