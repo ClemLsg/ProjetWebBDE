@@ -1,5 +1,6 @@
 <?php
 
+use App\Picture;
 use App\Product;
 use Illuminate\Database\Seeder;
 
@@ -15,10 +16,14 @@ class ProductsTableSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         for($i=0; $i<20; $i++){
-            Product::create([
+            $prod = Product::create([
                 'name' => $faker->domainWord,
                 'price' => $faker->numberBetween(0,70)
             ]);
+            $pict = Picture::find($faker->numberBetween(2,20));
+
+            $prod->pictures()->attach($pict);
+
         }
     }
 }
