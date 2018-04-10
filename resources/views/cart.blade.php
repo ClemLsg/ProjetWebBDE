@@ -1,7 +1,7 @@
 @extends('layouts.headAndFoot')
 
 @section('content')
-    
+
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">Votre panier</h1>
