@@ -15,26 +15,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/', function () {
-    return view('shop');
-})->name('shop');
+Route::get('/', 'ShopController@index')->name('shop');
 
-Route::get('/product', function (){
-    return view('product');
-})->name('product');
+Route::get('/product', 'ProductController@index')->name('product');
 
-Route::get('/category', function (){
-    return view('category');
-})->name('category');
+Route::get('/category', 'CategoryController@index')->name('category');
 
-Route::get('/cart', function(){
-    return view('cart');
-})->name('cart');
+Route::get('/cart', 'CartController@index')->name('cart');
 
-Route::get('/user', function(){
-    return view('user');
-})->name('user');
+Route::get('/user', 'UserPageController@index')->name('user');
 
-Route::get('/contact', function(){
-    return view('contact');
-})->name('contact');
+Route::get('/contact','ContactController@index')->name('contact');
