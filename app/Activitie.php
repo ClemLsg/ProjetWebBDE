@@ -16,6 +16,11 @@ class Activitie extends Model
         return $this->belongsToMany('App\User')->as('users');
     }
 
+    public function pictures()
+    {
+        return $this->hasMany('App\Picture');
+    }
+
     public function creator()
     {
         return $this->belongsTo('App\User');

@@ -2,6 +2,7 @@
 
 use App\Activitie;
 use App\Picture;
+use App\Product;
 use App\User;
 use Illuminate\Database\Seeder;
 
@@ -18,6 +19,8 @@ class TruncateTables extends Seeder
         Picture::truncate();
         Activitie::truncate();
         User::truncate();
+        Product::truncate();
         Schema::enableForeignKeyConstraints();
+
     }
 }
