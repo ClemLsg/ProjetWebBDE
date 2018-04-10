@@ -1,6 +1,7 @@
 <?php
 
 use App\Activitie;
+use App\Comment;
 use App\Picture;
 use App\Product;
 use App\User;
@@ -20,6 +21,7 @@ class TruncateTables extends Seeder
         Activitie::truncate();
         User::truncate();
         Product::truncate();
+        Comment::truncate();
         Schema::enableForeignKeyConstraints();
 
     }
