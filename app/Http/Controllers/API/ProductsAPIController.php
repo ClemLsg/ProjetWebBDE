@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProductsController extends Controller
+class ProductsAPIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return response()->json($products->toArray(), 200);
     }
 
     /**
@@ -46,7 +48,12 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::find($id);
+
+        if(is_null($product)){
+            return response()->json(array('success' => false),404);
+        }
+
     }
 
     /**
