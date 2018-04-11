@@ -1,5 +1,6 @@
 <?php
 
+use App\Order;
 use App\Picture;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -15,6 +16,8 @@ class UserTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
+        $order_id = Order::all()->pluck('id')->toArray();
+
         for($i=0; $i<20; $i++){
             $user = User::create([
                 'name' => $faker->firstName,
@@ -27,6 +30,12 @@ class UserTableSeeder extends Seeder
             $pict = Picture::find(1);
 
             $pict->user()->save($user);
+
+            $random_elem = $faker->randomElement($order_id);
+            $order = Order::find($random_elem);
+            $order_id = array_diff($order_id, array($random_elem));
+
+            $user->orders()->attach($order);
 
         }
     }

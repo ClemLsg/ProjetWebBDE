@@ -2,6 +2,7 @@
 
 use App\Activitie;
 use App\Comment;
+use App\Order;
 use App\Picture;
 use App\Product;
 use App\User;
@@ -17,6 +18,10 @@ class TruncateTables extends Seeder
     public function run()
     {
         Schema::disableForeignKeyConstraints();
+        DB::table('picture_product')->truncate();
+        DB::table('order_product')->truncate();
+        DB::table('order_user')->truncate();
+        Order::truncate();
         Picture::truncate();
         Activitie::truncate();
         User::truncate();
