@@ -17,7 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'IndexController@index')->name('index');
 
-Route::get('/product', 'ProductController@index')->name('product');
+Route::get('/product/{id}', 'ProductController@index')->name('product');
 
 Route::get('/category', 'CategoryController@index')->name('category');
 
@@ -32,3 +32,5 @@ Route::get('/shop', 'ShopController@index')->name('shop');
 Route::get('/ideabox', 'IdeaboxController@index')->name('ideabox');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::post('/cart/add', 'CartController@add')->name('addtocart');

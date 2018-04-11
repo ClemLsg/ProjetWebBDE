@@ -29,140 +29,40 @@
             <div class="card bg-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Catégorie</div>
                 <ul class="list-group category_block">
-                    <li class="list-group-item"><a href="category">Sweat</a></li>
-                    <li class="list-group-item"><a href="category">Tee-shirt</a></li>
-                    <li class="list-group-item"><a href="category">Mug</a></li>
-                    <li class="list-group-item"><a href="category">Clé USB</a></li>
-                    <li class="list-group-item"><a href="category">Alcool</a></li>
+                    @foreach($categories as $cat)
+                    <li class="list-group-item" onclick="expandResults({{$cat->id}})" style="cursor: pointer">{{$cat->name}}</li>
+                    @endforeach
                 </ul>
             </div>
             <div class="card bg-light mb-3">
                 <div class="card-header bg-success text-white text-uppercase">Dernier produit</div>
                 <div class="card-body">
-                    <img class="img-fluid" src="https://dummyimage.com/600x400/55595c/fff" />
-                    <h5 class="card-title">TITRE PRODUIT</h5>
-                    <p class="card-text">DESCRIPTION PRODUIT</p>
-                    <p class="bloc_left_price">99.00 $</p>
+                    <img class="img-fluid" src="{{$last->pictures()->first()->url}}" />
+                    <h5 class="card-title">{{$last->name}}</h5>
+                    <p class="bloc_left_price">{{$last->price}} $</p>
                 </div>
             </div>
         </div>
         <div class="col">
-            <div class="row">
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="product" title="View Product">TITRE PRODUIT</a></h4>
-                            <p class="card-text">DESCRIPTION</p>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">99.00 $</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="product" title="View Product">TITRE PRODUIT</a></h4>
-                            <p class="card-text">DESCRIPTION</p>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">99.00 $</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="product" title="View Product">TITRE PRODUIT</a></h4>
-                            <p class="card-text">DESCRIPTION</p>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">99.00 $</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="product" title="View Product">TITRE PRODUIT</a></h4>
-                            <p class="card-text">DESCRIPTION</p>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">99.00 $</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="product" title="View Product">TITRE PRODUIT</a></h4>
-                            <p class="card-text">DESCRIPTION</p>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">99.00 $</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card">
-                        <img class="card-img-top" src="https://dummyimage.com/600x400/55595c/fff" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title"><a href="product" title="View Product">TITRE PRODUIT</a></h4>
-                            <p class="card-text">DESCRIPTION</p>
-                            <div class="row">
-                                <div class="col">
-                                    <p class="btn btn-danger btn-block">99.00 $</p>
-                                </div>
-                                <div class="col">
-                                    <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" id="category-container">
+            </div>
                 <div class="col-12">
                     <nav aria-label="...">
                         <ul class="pagination">
                             <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                <a class="page-link" tabindex="-1">Previous</a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
                             <li class="page-item active">
-                                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                <a class="page-link">1</a>
                             </li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
+                                <a class="page-link">2</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link">3</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link">Next</a>
                             </li>
                         </ul>
                     </nav>
@@ -191,4 +91,47 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+
+        var request = new XMLHttpRequest();
+        request.open("GET", "/api/products/0", false);
+        request.send(null);
+        var responses = JSON.parse(request.responseText);
+
+        var request2 = new XMLHttpRequest();
+        request2.open("GET", "/api/image/url/", false);
+        request2.send(null);
+        var url = JSON.parse(request2.responseText);
+
+        expandResults(0);
+
+        function expandResults(filterValue){
+            containerE = document.getElementById("category-container");
+            containerE.innerHTML = "";
+            for (var i in responses){
+                if(responses[i].category_id === filterValue || filterValue === 0){
+                    containerE.innerHTML = containerE.innerHTML +
+                        "<div class='col-12 col-md-6 col-lg-4'>" +
+                            "<div class='card'>" +
+                                "<img class='card-img-top' src='"+ url[responses[i].id] +"' alt='Card image cap'>" +
+                                "<div class='card-body'>" +
+                                    "<h4 class='card-title'><a href='"+"/product/"+ responses[i].id +"' title='View Product'>"+responses[i].name +"</a></h4>" +
+                                    "<div class='row'>" +
+                                        "<div class='col'>" +
+                                            "<p class='btn btn-danger btn-block'>"+responses[i].price +" $</p>" +
+                                        "</div>" +
+                                        "<div class='col'>" +
+                                            "<a href='#' class='btn btn-success btn-block'>Ajouter au panier</a>" +
+                                        "</div>" +
+                                    "</div>" +
+                                "</div>" +
+                            "</div>" +
+                        "</div>";
+                }
+            }
+        }
+    </script>
 @endsection

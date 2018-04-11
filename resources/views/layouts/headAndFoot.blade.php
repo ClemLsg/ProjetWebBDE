@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("product")}}">Produits</a>
+                    <a class="nav-link" href="{{route("product", 1)}}">Produits</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route("category")}}">Catégories</a>
@@ -69,7 +69,7 @@
                         </button>
                     </div>
                 </div>
-                <a class="btn btn-success btn-sm ml-3" href="cart">
+                <a class="btn btn-success btn-sm ml-3" href="{{route("cart")}}">
                     <i class="fa fa-shopping-cart"></i> Panier
                     <span class="badge badge-light">3</span>
                 </a>
@@ -137,6 +137,7 @@
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/material.js') }}"></script>
+@yield('scripts')
 
 </body>
 </html>

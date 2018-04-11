@@ -11,9 +11,9 @@ class Comment extends Model
         'content',
     ];
 
-    public function users()
+    public function writer()
     {
-        return $this->belongsToMany('App\User')->as('users');
+        return $this->belongsTo('App\User','user_id');
     }
 
     public function picture()
