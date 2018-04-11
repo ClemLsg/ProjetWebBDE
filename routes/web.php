@@ -26,3 +26,5 @@ Route::get('/cart', 'CartController@index')->name('cart');
 Route::get('/user', 'UserPageController@index')->name('user');
 
 Route::get('/contact','ContactController@index')->name('contact');
+
+Route::get('/index', 'IndexController@index')->name('index');
