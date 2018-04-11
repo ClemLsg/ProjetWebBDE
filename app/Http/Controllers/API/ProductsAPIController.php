@@ -70,7 +70,29 @@ class ProductsAPIController extends BaseAPIController
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'price' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', 412);
+        }
+
+        $product = Product::find($id);
+        if (is_null($product)) {
+            return $this->sendError('Post not found.', 404);
+        }
+
+
+        $product->name = $input['name'];
+        $product->price = $input['price'];
+        $product->save();
+
+
+        return $this->sendPositiveResponse($product->toArray(), 'Post updated successfully.', 200);
     }
 
     /**
