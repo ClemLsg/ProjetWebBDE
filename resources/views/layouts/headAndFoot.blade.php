@@ -69,10 +69,12 @@
                         </button>
                     </div>
                 </div>
+                @guest
+                @else
                 <a class="btn btn-success btn-sm ml-3" href="{{route("cart")}}">
                     <i class="fa fa-shopping-cart"></i> Panier
-                    <span class="badge badge-light">3</span>
                 </a>
+                @endguest
             </form>
 
         </div>

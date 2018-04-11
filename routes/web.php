@@ -33,4 +33,10 @@ Route::get('/ideabox', 'IdeaboxController@index')->name('ideabox');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-Route::post('/cart/add', 'CartController@add')->name('addtocart');
+Route::post('/cart/add/{id}', 'CartController@add')->name('addtocart');
+
+Route::post('/cart/remove/{id}', 'CartController@remove')->name('removefromcart');
+
+Route::post('/cart/order', 'CartController@order')->name('order');
+
+Route::get('/cart/payement', 'PayementController@pindex')->name('order');

@@ -61,7 +61,7 @@
                 <div class="card-body">
                     <p class="price">{{$produit->price}} $</p>
                     <p class="price_discounted">{{$remise}} $</p>
-                    <form method="POST" action="{{route('addtocart')}}">
+                    <form method="POST" action="{{route('addtocart', $produit->id)}}">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>Quantité :</label>
