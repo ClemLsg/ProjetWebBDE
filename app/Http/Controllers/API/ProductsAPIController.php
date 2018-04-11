@@ -4,29 +4,19 @@ namespace App\Http\Controllers\API;
 
 use App\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class ProductsAPIController extends Controller
+class ProductsAPIController extends BaseAPIController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all the products in a JSON format
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $products = Product::all();
-        return response()->json($products->toArray(), 200);
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->sendPositiveResponse($products, 'All products have been retrieved successfully.', 200);
     }
 
     /**
@@ -51,9 +41,10 @@ class ProductsAPIController extends Controller
         $product = Product::find($id);
 
         if(is_null($product)){
-            return response()->json(array('success' => false),404);
+            return $this->sendError('Product not found.',404);
         }
 
+        return $this->sendPositiveResponse($product->toArray(),'The wanted product has been retrieved successfully.',200);
     }
 
     /**
