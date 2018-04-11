@@ -62,17 +62,6 @@ class ProductsAPIController extends BaseAPIController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -92,6 +81,14 @@ class ProductsAPIController extends BaseAPIController
      */
     public function destroy($id)
     {
-        //
+        $product = Product::find($id);
+
+        if(is_null($product)){
+            return $this->sendError('Post not found', 404);
+        }
+
+        $product->delete();
+
+        return $this->sendPositiveResponse($id, 'Product deleted successfully.', 200);
     }
 }
