@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Product;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ProductsAPIController extends BaseAPIController
@@ -27,7 +28,20 @@ class ProductsAPIController extends BaseAPIController
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'price' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('The content of the request does not satisfy the validator.', 412);
+        }
+
+        $product = Product::create($input);
+
+        return $this->sendPositiveResponse($product->toArray(),'Product created successfully.', 201);
     }
 
     /**
