@@ -30,3 +30,5 @@ Route::get('/contact','ContactController@index')->name('contact');
 Route::get('/shop', 'ShopController@index')->name('shop');
 
 Route::get('/ideabox', 'IdeaboxController@index')->name('ideabox');
+
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
