@@ -137,6 +137,7 @@ return [
     */
 
     'providers' => [
+        Fx3costa\LaravelChartJs\Providers\ChartjsServiceProvider::class,
 
         /*
          * Laravel Framework Service Providers...
