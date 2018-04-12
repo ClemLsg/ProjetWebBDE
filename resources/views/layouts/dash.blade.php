@@ -46,7 +46,7 @@
                         <a href="{{route('pastcommand')}}">Commandes terminées</a>
                     </li>
                     <li>
-                        <a href="navbar.html">Gestion des produits</a>
+                        <a href="{{route('manageproduct')}}">Gestion des produits</a>
                     </li>
                 </ul>
             </li>
@@ -57,7 +57,7 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComponents2">
                     <li>
-                        <a href="cards.html">Gestion des evenements</a>
+                        <a href="{{route('manageevent')}}">Gestion des evenements</a>
                     </li>
                     <li>
                         <a href="navbar.html">La boite à idée</a>
@@ -71,7 +71,7 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                     <li>
-                        <a href="navbar.html">Gestion des comptes</a>
+                        <a href="{{route('manageaccount')}}">Gestion des comptes</a>
                     </li>
                     <li>
                         <a href="navbar.html">Mise en maintenance</a>
