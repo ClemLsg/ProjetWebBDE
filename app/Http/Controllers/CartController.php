@@ -37,8 +37,25 @@ class CartController extends Controller
     public function add(Request $request, $id)
     {
         $user = Auth::user();
+        $cart = Auth::user()->cart;
 
-        $user->cart()->attach($id, array('quantity' => $request->input('quantity')));
+        $passed = 0;
+        if($cart->count() == 0){
+            $user->cart()->attach($id, array('quantity' => $request->input('quantity')));
+        } else {
+            foreach ($cart as $item) {
+                if($passed == 0){
+                    if($id == $item->id){
+                        $quantity = $item->cart->quantity + $request->input('quantity');
+                        $user->cart()->sync([$id => ['quantity' => $quantity]]);;
+                    } else {
+                        $user->cart()->attach($id, array('quantity' => $request->input('quantity')));
+                        $passed = 1;
+                    }
+                }
+
+            }
+        }
 
         return redirect()->back()->with("success","Votre article a été ajouté au panier");
     }

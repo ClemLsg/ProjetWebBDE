@@ -62,22 +62,8 @@
             </div>
                 <div class="col-12">
                     <nav aria-label="...">
-                        <ul class="pagination">
-                            <li class="page-item disabled">
-                                <a class="page-link" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link">Next</a>
-                            </li>
+                        <ul id="pagination" class="pagination">
+
                         </ul>
                     </nav>
                 </div>
@@ -108,47 +94,5 @@
 @endsection
 
 @section('scripts')
-    <script>
-
-        var request = new XMLHttpRequest();
-        request.open("GET", "/api/products/0", false);
-        request.send(null);
-        var responses = JSON.parse(request.responseText);
-
-        var request2 = new XMLHttpRequest();
-        request2.open("GET", "/api/image/url/", false);
-        request2.send(null);
-        var url = JSON.parse(request2.responseText);
-
-        expandResults(0);
-
-        function expandResults(filterValue){
-            containerE = document.getElementById("category-container");
-            containerE.innerHTML = "";
-            for (var i in responses){
-                if(responses[i].category_id === filterValue || filterValue === 0){
-                    containerE.innerHTML = containerE.innerHTML +
-                        "<div class='col-12 col-md-6 col-lg-4'>" +
-                            "<div class='card'>" +
-                                "<img class='card-img-top' src='"+ url[responses[i].id] +"' alt='Card image cap'>" +
-                                "<div class='card-body'>" +
-                                    "<h4 class='card-title'><a href='"+"/product/"+ responses[i].id +"' title='View Product'>"+responses[i].name +"</a></h4>" +
-                                    "<div class='row'>" +
-                                        "<div class='col'>" +
-                                            "<p class='btn btn-danger btn-block'>"+responses[i].price +" $</p>" +
-                                        "</div>" +
-                                        "<form class='col' method='POST' action='/cart/add/" + responses[i].id + "'>" + "<input type='hidden' name='_token' value='V6x69qglz1C1ALFYYBsGOv0UlepTgHjl6lwHyBkP'>" +
-                                        "<input type='text' class='form-control d-none' id='quantity' name='quantity' min='1' max='10' value='1'>" +
-                                            "<div class='col-sm-12'>" +
-                                                "<button type='submit' class='btn btn-success btn-block'>Ajouter au panier</button>" +
-                                            "</div>" +
-                                        "</form>" +
-                                    "</div>" +
-                                "</div>" +
-                            "</div>" +
-                        "</div>";
-                }
-            }
-        }
-    </script>
+    <script src="{{ asset('js/category.js') }}"></script>
 @endsection

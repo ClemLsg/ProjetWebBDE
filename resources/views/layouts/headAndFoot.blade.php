@@ -1,3 +1,7 @@
+<?php
+$cart = Auth::user()->cart;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,6 +77,9 @@
                 @else
                 <a class="btn btn-success btn-sm ml-3" href="{{route("cart")}}">
                     <i class="fa fa-shopping-cart"></i> Panier
+                    @if($cart->count() > 0)
+                        <span class="badge badge-light">{{$cart->count()}}</span>
+                    @endif
                 </a>
                 @endguest
             </form>
@@ -130,7 +137,6 @@
                 <p class="float-left">
                     <a href="#">Haut de page</a>
                 </p>
-                <p class="text-right text-muted">created with <i class="fa fa-heart"></i> by <a href="http://fontaine-paul.fr"><i>LeVeloute</i></a> | <span>v. 1.0</span></p>
             </div>
         </div>
     </div>

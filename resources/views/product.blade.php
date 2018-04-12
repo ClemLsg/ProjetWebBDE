@@ -93,9 +93,15 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">
-                            <i class="fa fa-shopping-cart"></i> Ajouter au panier
-                        </button>
+                        @if($produit->stock > 0)
+                            <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">
+                                <i class="fa fa-cart-plus"></i> Ajouter au panier
+                            </button>
+                        @else
+                            <a href="{{route('category')}}" class="btn btn-danger btn-lg btn-block text-uppercase">
+                                <i class="fa fa-frown-o" aria-hidden="true"></i> Produit victime de son succès
+                            </a>
+                        @endif
                     </form>
                     <div class="product_rassurance">
                         <ul class="list-inline">
