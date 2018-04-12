@@ -2,6 +2,7 @@
 
 use App\Comment;
 use App\Picture;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class CommentsTableSeeder extends Seeder
@@ -18,10 +19,14 @@ class CommentsTableSeeder extends Seeder
         $pictures = Picture::all()->pluck('id')->toArray();
 
         for($i=0; $i<20; $i++){
-            Comment::create([
+            $comment = Comment::create([
                 'content' => $faker->text(100),
                 'picture_id' => $faker->randomElement($pictures)
             ]);
+
+            $user = User::find($faker->numberBetween(1,20));
+
+            $user->comments()->save($comment);
 
         }
     }

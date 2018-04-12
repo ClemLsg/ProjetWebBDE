@@ -1,5 +1,6 @@
 <?php
 
+use App\Category;
 use App\Order;
 use App\Picture;
 use App\Product;
@@ -19,7 +20,8 @@ class ProductsTableSeeder extends Seeder
         for($i=0; $i<20; $i++){
             $prod = Product::create([
                 'name' => $faker->domainWord,
-                'price' => $faker->numberBetween(0,70)
+                'price' => $faker->numberBetween(0,70),
+                'description' => $faker->text(500)
             ]);
             $pict = Picture::find($faker->numberBetween(2,20));
 
@@ -28,6 +30,10 @@ class ProductsTableSeeder extends Seeder
             $order = Order::find($faker->numberBetween(2,20));
 
             $prod->orders()->attach($order, array('quantity' => $faker->numberBetween(1,5)));
+
+            $cat = Category::find($faker->numberBetween(1,5));
+
+            $cat->products()->save($prod);
         }
     }
 }

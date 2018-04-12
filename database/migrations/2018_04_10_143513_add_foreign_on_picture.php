@@ -28,5 +28,9 @@ class AddForeignOnPicture extends Migration
     public function down()
     {
         //
+        Schema::table('pictures', function (Blueprint $table) {
+            $table->dropColumn('activitie_id');
+            $table->dropForeign('activitie_id');
+        });
     }
 }

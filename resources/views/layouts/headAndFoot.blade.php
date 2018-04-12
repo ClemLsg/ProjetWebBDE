@@ -1,3 +1,10 @@
+@guest
+@else
+<?php
+$cart = Auth::user()->cart;
+?>
+@endguest
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_token" content="{{ csrf_token() }}">
 
     <title>BDE SHOP</title>
 
@@ -31,7 +39,7 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("product")}}">Produits</a>
+                    <a class="nav-link" href="{{route("product", 1)}}">Produits</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route("category")}}">Catégories</a>
@@ -70,10 +78,15 @@
                         </button>
                     </div>
                 </div>
-                <a class="btn btn-success btn-sm ml-3" href="cart">
+                @guest
+                @else
+                <a class="btn btn-success btn-sm ml-3" href="{{route("cart")}}">
                     <i class="fa fa-shopping-cart"></i> Panier
-                    <span class="badge badge-light">3</span>
+                    @if($cart->count() > 0)
+                        <span class="badge badge-light">{{$cart->count()}}</span>
+                    @endif
                 </a>
+                @endguest
             </form>
 
         </div>
@@ -129,7 +142,6 @@
                 <p class="float-left">
                     <a href="#">Haut de page</a>
                 </p>
-                <p class="text-right text-muted">created with <i class="fa fa-heart"></i> by <a href="http://fontaine-paul.fr"><i>LeVeloute</i></a> | <span>v. 1.0</span></p>
             </div>
         </div>
     </div>
@@ -138,6 +150,7 @@
 <script src="{{ asset('js/popper.js') }}"></script>
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/material.js') }}"></script>
+@yield('scripts')
 
 </body>
 </html>
