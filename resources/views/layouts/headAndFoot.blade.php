@@ -1,6 +1,9 @@
+@guest
+@else
 <?php
 $cart = Auth::user()->cart;
 ?>
+@endguest
 
 <!DOCTYPE html>
 <html lang="en">
