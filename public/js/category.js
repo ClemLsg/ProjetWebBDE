@@ -17,6 +17,13 @@ function expandResults(filterValue){
     let loop = 0;
     let page = 1;
 
+    let meta = document.getElementsByTagName("META");
+    Array.prototype.forEach.call(meta, function(element){
+        if(element.name === '_token'){
+            token = element.content;
+        }
+    });
+
     Array.prototype.forEach.call(responses, function(element){
         if(loop%6 === 0){
             containerE = document.createElement("div");
@@ -48,7 +55,7 @@ function expandResults(filterValue){
                 "<div class='col'>" +
                 "<p class='btn btn-danger btn-block'>"+element.price +" $</p>" +
                 "</div>" +
-                "<form class='col' method='POST' action='/cart/add/" + element.id + "'>" + "<input type='hidden' name='_token' value='V6x69qglz1C1ALFYYBsGOv0UlepTgHjl6lwHyBkP'>" +
+                "<form class='col' method='POST' action='/cart/add/" + element.id + "'>" + "<input type='hidden' name='_token' value='"+ token +"'>" +
                 "<input type='text' class='form-control d-none' id='quantity' name='quantity' min='1' max='10' value='1'>" +
                 "<div class='col-sm-12'>" +
                 "<button type='submit' class='btn btn-success btn-block'>Ajouter au panier</button>" +

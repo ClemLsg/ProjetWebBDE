@@ -40,3 +40,5 @@ Route::post('/cart/remove/{id}', 'CartController@remove')->name('removefromcart'
 Route::post('/cart/order/{type}', 'CartController@order')->name('order');
 
 Route::get('/cart/payment', 'PaymentController@index')->name('payment');
+
+Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
