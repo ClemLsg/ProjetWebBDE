@@ -81,8 +81,8 @@ class CartController extends Controller
         $user->orders()->attach($order->id);
 
         foreach ($cart as $prod){
-            $user->cart()->detach($prod->id);
             $order->products()->attach($prod->id, array('quantity' => $prod->cart->quantity));
+            $user->cart()->detach($prod->id);
         }
 
         return redirect()->route('index');
