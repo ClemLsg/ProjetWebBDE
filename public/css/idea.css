@@ -1,0 +1,44 @@
+.hr{
+
+    border:         none;
+    border-left:    1px solid hsla(200, 10%, 50%,100);
+    height:         10vh;
+    width:          1px;
+}
+
+.para {
+    font-size: 12px;
+}
+
+.best {
+    padding-top: 5%;
+
+}
+#fat {
+    padding-top: 5%;
+}
+.bouton {
+    background-color: #8b9cd4;
+    color: #2a88bd;
+}
+
+.fa-thumbs-up {
+    position: relative;
+    top: -100px;
+    left: 0px;
+
+
+
+}
+
+.fa-edit {
+    position: relative;
+    top: -50px;
+    left: -19px;
+}
+
+
+
+.top {
+    background: #e6e5e5;
+}
