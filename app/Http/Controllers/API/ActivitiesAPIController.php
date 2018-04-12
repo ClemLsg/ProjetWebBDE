@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Activitie;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ActivitiesAPIController extends BaseAPIController
 {
@@ -27,7 +30,24 @@ class ActivitiesAPIController extends BaseAPIController
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'description' => 'required',
+            'name' => 'required',
+            'recurrent' => 'required',
+            'price' => 'required',
+            'date' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('The content of the request does not satisfy the validator.', 412);
+        }
+
+        $activity = Activitie::create($input);
+
+        return $this->sendPositiveResponse($activity->toArray(),'Activity created successfully.', 201);
     }
 
     /**
@@ -56,7 +76,37 @@ class ActivitiesAPIController extends BaseAPIController
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'description' => 'required',
+            'name' => 'required',
+            'recurrent' => 'required',
+            'price' => 'required',
+            'date' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', 412);
+        }
+
+        $activity = Activitie::find($id);
+        if (is_null($activity)) {
+            return $this->sendError('Activity not found.', 404);
+        }
+
+
+        $activity->description = $input['description'];
+        $activity->name = $input['name'];
+        $activity->recurrent = $input['recurrent'];
+        $activity->price = $input['price'];
+        $activity->date = $input['date'];
+        $activity->user_id = $input['user_id'];
+        $activity->save();
+
+
+        return $this->sendPositiveResponse($activity->toArray(), 'Activity updated successfully.', 200);
     }
 
     /**
@@ -67,6 +117,14 @@ class ActivitiesAPIController extends BaseAPIController
      */
     public function destroy($id)
     {
-        //
+        $activity = Activitie::find($id);
+
+        if(is_null($activity)){
+            return $this->sendError('Activity not found', 404);
+        }
+
+        $activity->delete();
+
+        return $this->sendPositiveResponse($id, 'Activity deleted successfully.', 200);
     }
 }
