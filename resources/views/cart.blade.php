@@ -24,30 +24,19 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                        <td>TITRE PRODUIT</td>
-                        <td>In stock</td>
-                        <td><input class="form-control" type="text" value="1" /></td>
-                        <td class="text-right">124,90 €</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                        <td>TITRE PRODUIT</td>
-                        <td>In stock</td>
-                        <td><input class="form-control" type="text" value="1" /></td>
-                        <td class="text-right">33,90 €</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                    </tr>
-                    <tr>
-                        <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                        <td>TITRE PRODUIT</td>
-                        <td>En stock</td>
-                        <td><input class="form-control" type="text" value="1" /></td>
-                        <td class="text-right">70,00 €</td>
-                        <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                    </tr>
+                    @foreach($cart as $prod)
+                        <tr>
+                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
+                            <td>{{$prod->name}}</td>
+                            <td>In stock</td>
+                            <td><input class="form-control" type="text" value="{{$prod->cart->quantity}}" /></td>
+                            <td class="text-right">{{($prod->cart->quantity) * ($prod->price) }} €</td>
+                            <form method="POST" action="{{route('removefromcart', $prod->id)}}">
+                                {{ csrf_field() }}
+                                <td class="text-right"><button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                            </form>
+                        </tr>
+                    @endforeach
                     <tr>
                         <td></td>
                         <td></td>
@@ -62,7 +51,7 @@
                         <td></td>
                         <td></td>
                         <td><strong>Total</strong></td>
-                        <td class="text-right"><strong>346,90 €</strong></td>
+                        <td class="text-right"><strong>{{$total}} €</strong></td>
                     </tr>
                     </tbody>
                 </table>
@@ -71,11 +60,17 @@
         <div class="col mb-2">
             <div class="row">
                 <div class="col-sm-12  col-md-6">
-                    <button class="btn btn-block">Continuer vos achats</button>
+                    <a class="btn btn-block" href="{{route('category')}}">Continuer vos achats</a>
                 </div>
-                <div class="col-sm-12 col-md-6 text-right">
-                    <button class="btn btn-lg btn-block btn-success text-uppercase">Confirmer la commande</button>
-                </div>
+                @if($validate == 1)
+                    <div class="col-sm-12 col-md-6 text-right">
+                        <a href="{{route('payment')}}" class="btn btn-lg btn-block btn-success text-uppercase">Confirmer la commande</a>
+                    </div>
+                @else
+                    <div class="col-sm-12 col-md-6 text-right">
+                        <a href="{{route('category')}}" class="btn btn-lg btn-block btn-primary text-uppercase">Votre panier est vide</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
