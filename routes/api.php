@@ -28,3 +28,8 @@ Route::resource('pictures', 'API\PictureAPIController')->except(['create', 'edit
  * Only the GET /api/users and GET /api/users/{user} are allowed.
  */
 Route::resource('users', 'API\UsersApiController')->only(['index', 'show']);
+
+/*
+ *
+ */
+Route::resource('activities', 'API\ActivitiesAPIController');
