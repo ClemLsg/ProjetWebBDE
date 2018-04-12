@@ -24,6 +24,7 @@ Route::resource('orders', 'API\OrderAPIController')->only(['index', 'show']);
 Route::resource('pictures', 'API\PictureAPIController')->except(['create', 'edit']);
 
 /**
- *
+ * Resource route for the requests about the users in the API.
+ * Only the GET /api/users and GET /api/users/{user} are allowed.
  */
-Route::resource('users', 'API\UsersApiController')->except(['create', 'edit']);
+Route::resource('users', 'API\UsersApiController')->only(['index', 'show']);
