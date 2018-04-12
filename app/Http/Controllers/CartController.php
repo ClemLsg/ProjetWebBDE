@@ -38,22 +38,22 @@ class CartController extends Controller
     {
         $user = Auth::user();
         $cart = Auth::user()->cart;
+        $loop = 0;
 
-        $passed = 0;
         if($cart->count() == 0){
             $user->cart()->attach($id, array('quantity' => $request->input('quantity')));
         } else {
             foreach ($cart as $item) {
-                if($passed == 0){
-                    if($id == $item->id){
-                        $quantity = $item->cart->quantity + $request->input('quantity');
-                        $user->cart()->sync([$id => ['quantity' => $quantity]]);;
-                    } else {
-                        $user->cart()->attach($id, array('quantity' => $request->input('quantity')));
-                        $passed = 1;
-                    }
-                }
+                $array[$loop] = $item->id;
+                $loop++;
+            }
 
+            if(in_array($id, $array)){
+                $prod = Auth::user()->cart->where('id', $id)->first();
+                $quantity = $prod->cart->quantity + $request->input('quantity');
+                $user->cart()->updateExistingPivot($id , ['quantity' => $quantity]);;
+            } else {
+                $user->cart()->attach($id, array('quantity' => $request->input('quantity')));
             }
         }
 

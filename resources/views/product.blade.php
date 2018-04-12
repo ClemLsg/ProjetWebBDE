@@ -110,16 +110,6 @@
                             <li class="list-inline-item"><i class="fa fa-cc-paypal fa-2x" aria-hidden="true"></i></i></i><br/>Paiement Paypal</li>
                         </ul>
                     </div>
-                    <div class="reviews_product p-3 mb-2 ">
-                        3 avis
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        (4/5)
-                        <a class="pull-right" href="#reviews">Voir les avis</a>
-                    </div>
             </div>
         </div>
     </div>
