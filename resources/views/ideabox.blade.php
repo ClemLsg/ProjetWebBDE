@@ -24,8 +24,8 @@
                         <hr class="hr col-md-1 offset-1">
                         <div class="col-md-3 icon offset-10">
                                     <span class="input-group-btn">
-                                        <i class="fa fa-thumbs-up"></i>
-                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-thumbs-up fa-2x"></i>
+                                        <i class="fa fa-edit fa-2x"></i>
                                     </span>
                         </div>
                     </div>
@@ -43,8 +43,8 @@
                                         <hr class="hr col-md-1 offset-1">
                                         <div class="col-md-3 icon offset-10">
                                     <span class="input-group-btn">
-                                        <i class="fa fa-thumbs-up"></i>
-                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-thumbs-up fa-2x"></i>
+                                        <i class="fa fa-edit fa-2x"></i>
                                     </span>
                                         </div>
                                     </div>
@@ -62,8 +62,8 @@
                                         <hr class="hr col-md-1 offset-1">
                                         <div class="col-md-3 offset-10 ">
                                             <span class="input-group-btn">
-                                                <i class="fa fa-thumbs-up"></i>
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-thumbs-up fa-2x"></i>
+                                                <i class="fa fa-edit fa-2x"></i>
                                             </span>
                                         </div>
                                     </div>
