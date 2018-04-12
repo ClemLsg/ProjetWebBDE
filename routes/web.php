@@ -32,3 +32,13 @@ Route::get('/shop', 'ShopController@index')->name('shop');
 Route::get('/ideabox', 'IdeaboxController@index')->name('ideabox');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::get('/dashboard/command', 'DashcommandController@index')->name('dashcommand');
+
+Route::get('/dashboard/pastcommand', 'pastcommandController@index')->name('pastcommand');
+
+Route::get('/dashboard/manageproduct', 'manageproductController@index')->name('manageproduct');
+
+Route::get('/dashboard/manageevent', 'manageeventController@index')->name('manageevent');
+
+Route::get('/dashboard/manageaccount', 'manageaccountController@index')->name('manageaccount');
