@@ -32,3 +32,7 @@ Route::get('/shop', 'ShopController@index')->name('shop');
 Route::get('/ideabox', 'IdeaboxController@index')->name('ideabox');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+Route::get('/dashboard/command', 'DashcommandController@index')->name('dashcommand');
+
+Route::get('/dashboard/pastcommand', 'pastcommandController@index')->name('pastcommand');

@@ -28,16 +28,27 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{route('dashboard')}}">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Tableau de bord</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-                <a class="nav-link" href="charts.html">
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents3" data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-area-chart"></i>
-                    <span class="nav-link-text">Commandes</span>
+                    <span class="nav-link-text">Goodies</span>
                 </a>
+                <ul class="sidenav-second-level collapse" id="collapseComponents3">
+                    <li>
+                        <a href="{{route('dashcommand')}}">Commandes à traiter</a>
+                    </li>
+                    <li>
+                        <a href="{{route('pastcommand')}}">Commandes terminées</a>
+                    </li>
+                    <li>
+                        <a href="navbar.html">Gestion des produits</a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents2" data-parent="#exampleAccordion">
@@ -45,9 +56,6 @@
                     <span class="nav-link-text">Evenements</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComponents2">
-                    <li>
-                        <a href="navbar.html">Ajouter un evenement</a>
-                    </li>
                     <li>
                         <a href="cards.html">Gestion des evenements</a>
                     </li>
@@ -63,12 +71,6 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseComponents">
                     <li>
-                        <a href="navbar.html">Ajouter un compte BDE</a>
-                    </li>
-                    <li>
-                        <a href="cards.html">Ajouter un compte salarié</a>
-                    </li>
-                    <li>
                         <a href="navbar.html">Gestion des comptes</a>
                     </li>
                     <li>
@@ -76,7 +78,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                <a class="nav-link" href="charts.html">
+                    <i class="fa fa-fw fa-flag"></i>
+                    <span class="nav-link-text">Signalement</span>
+                </a>
+            </li>
         </ul>
+
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
                 <a class="nav-link text-center" id="sidenavToggler">
