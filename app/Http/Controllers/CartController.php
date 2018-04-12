@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     //
-    public function _construct(){
-        $this->middleware('Auth');
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
 
     public function index()
@@ -19,12 +20,18 @@ class CartController extends Controller
         $cart = Auth::user()->cart;
         $total = 0;
 
+        if($cart->count() == 0){
+            $validate = 0;
+        } else {
+            $validate = 1;
+        }
+
         foreach ($cart as $item) {
             $price = ($item->cart->quantity) * ($item->price);
             $total = $total + $price;
         }
 
-        return view('cart', compact('cart', 'total'));
+        return view('cart', compact('cart', 'total','validate'));
     }
 
     public function add(Request $request, $id)
@@ -33,7 +40,7 @@ class CartController extends Controller
 
         $user->cart()->attach($id, array('quantity' => $request->input('quantity')));
 
-        return redirect()->back();
+        return redirect()->back()->with("success","Votre article a été ajouté au panier");
     }
 
     public function remove($id)
@@ -45,13 +52,13 @@ class CartController extends Controller
         return redirect()->back();
     }
 
-    public function order(){
+    public function order($type){
         $cart = Auth::user()->cart;
 
         $user = Auth::user();
 
         $order = Order::create([
-            'status' => 0
+            'status' => $type
         ]);
 
         $user->orders()->attach($order->id);
@@ -61,7 +68,7 @@ class CartController extends Controller
             $order->products()->attach($prod->id, array('quantity' => $prod->cart->quantity));
         }
 
-        return redirect()->back();
+        return redirect()->route('index');
 
     }
 }

@@ -1,7 +1,20 @@
 @extends('layouts.headAndFoot')
 
 @section('content')
-
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show col-sm-6 offset-3 text-center" style="z-index: 1; position: absolute">
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show col-sm-6 offset-3 text-center" style="z-index: 1; position: absolute">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            {{ session('success') }}
+            <a href="{{route('cart')}}">Cliquez ici pour accèder a votre panier</a>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @endif
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">E-COMMERCE CATEGORY</h1>
@@ -14,8 +27,8 @@
         <div class="col">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                    <li class="breadcrumb-item"><a href="category">Catégorie</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('index')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('category')}}">Catégorie</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Sous-catégorie</li>
                 </ol>
             </nav>
@@ -29,6 +42,7 @@
             <div class="card bg-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Catégorie</div>
                 <ul class="list-group category_block">
+                    <li class="list-group-item" onclick="expandResults(0)" style="cursor: pointer">Tout</li>
                     @foreach($categories as $cat)
                     <li class="list-group-item" onclick="expandResults({{$cat->id}})" style="cursor: pointer">{{$cat->name}}</li>
                     @endforeach
@@ -123,9 +137,12 @@
                                         "<div class='col'>" +
                                             "<p class='btn btn-danger btn-block'>"+responses[i].price +" $</p>" +
                                         "</div>" +
-                                        "<div class='col'>" +
-                                            "<a href='#' class='btn btn-success btn-block'>Ajouter au panier</a>" +
-                                        "</div>" +
+                                        "<form class='col' method='POST' action='/cart/add/" + responses[i].id + "'>" + "<input type='hidden' name='_token' value='V6x69qglz1C1ALFYYBsGOv0UlepTgHjl6lwHyBkP'>" +
+                                        "<input type='text' class='form-control d-none' id='quantity' name='quantity' min='1' max='10' value='1'>" +
+                                            "<div class='col-sm-12'>" +
+                                                "<button type='submit' class='btn btn-success btn-block'>Ajouter au panier</button>" +
+                                            "</div>" +
+                                        "</form>" +
                                     "</div>" +
                                 "</div>" +
                             "</div>" +

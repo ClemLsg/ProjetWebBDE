@@ -37,6 +37,6 @@ Route::post('/cart/add/{id}', 'CartController@add')->name('addtocart');
 
 Route::post('/cart/remove/{id}', 'CartController@remove')->name('removefromcart');
 
-Route::post('/cart/order', 'CartController@order')->name('order');
+Route::post('/cart/order/{type}', 'CartController@order')->name('order');
 
-Route::get('/cart/payement', 'PayementController@pindex')->name('order');
+Route::get('/cart/payment', 'PaymentController@index')->name('payment');

@@ -1,7 +1,21 @@
 @extends('layouts.headAndFoot')
 
 @section('content')
-
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show col-sm-6 offset-3 text-center" style="z-index: 1; position: absolute">
+            <i class="fa fa-times" aria-hidden="true"></i>
+            {{ session('error') }}
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @endif
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show col-sm-6 offset-3 text-center" style="z-index: 1; position: absolute">
+            <i class="fa fa-check" aria-hidden="true"></i>
+            {{ session('success') }}
+            <a href="{{route('cart')}}">Cliquez ici pour accèder a votre panier</a>
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    @endif
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">{{$produit->name}}</h1>
@@ -15,7 +29,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route("shop")}}">Ces'ESport Goodies</a></li>
                     <li class="breadcrumb-item"><a href="{{route("category")}}">Catégorie</a></li>
-                    <li class="breadcrumb-item"><a href="">{{$produit->category->name}}</a></li>
+                    <li class="breadcrumb-item"><a href="{{route("category")}}">{{$produit->category->name}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{$produit->name}}</li>
                 </ol>
             </nav>
@@ -86,7 +100,8 @@
                     <div class="product_rassurance">
                         <ul class="list-inline">
                             <li class="list-inline-item"><i class="fa fa-truck fa-2x"></i><br/>Livraison au Cesi</li>
-                            <li class="list-inline-item"><i class="fas fa-money-bill-alt fa-2x"></i><br/>Paiement Espèce</li>
+                            <li class="list-inline-item"><i class="fa fa-money fa-2x" aria-hidden="true"></i></i><br/>Paiement Espèce</li>
+                            <li class="list-inline-item"><i class="fa fa-cc-paypal fa-2x" aria-hidden="true"></i></i></i><br/>Paiement Paypal</li>
                         </ul>
                     </div>
                     <div class="reviews_product p-3 mb-2 ">
