@@ -48,7 +48,13 @@ class OrderAPIController extends BaseAPIController
     public function show($id)
     {
         $order = Order::find($id)->products()->get();
-        return $this->sendPositiveResponse($order->toArray(),'It worked.', 200);
+
+        if(is_null($order)){
+            return $this->sendError('Order not found.', 404);
+        }
+
+
+        return $this->sendPositiveResponse($order->toArray(),'Order properly shown.', 200);
     }
 
     /**
