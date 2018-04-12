@@ -57,7 +57,7 @@ class PictureAPIController extends BaseAPIController
             return $this->sendError('Picture not found.',404);
         }
 
-        return $this->sendPositiveResponse($picture->toArray(),'The wanted product has been retrieved successfully.',200);
+        return $this->sendPositiveResponse($picture->toArray(),'The wanted picture has been retrieved successfully.',200);
     }
 
     /**
