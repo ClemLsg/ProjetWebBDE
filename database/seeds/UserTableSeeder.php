@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
             $user = User::create([
                 'name' => $faker->firstName,
                 'email' => $faker->email,
-                'password' => $faker->password,
+                'password' => bcrypt('password'),
                 'surname' => $faker->lastName,
                 'rank' => $faker->numberBetween(0,2),
             ]);
