@@ -44,6 +44,7 @@ Route::get('/cart/payment', 'PaymentController@index')->name('payment');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
 
 Route::get('/dashboard/command', 'DashcommandController@index')->name('dashcommand');
+Route::post('/dashboard/command/changestatus/{id}', 'DashcommandController@changeStatus')->name('ChangeStatusCommand');
 
 Route::get('/dashboard/pastcommand', 'pastcommandController@index')->name('pastcommand');
 

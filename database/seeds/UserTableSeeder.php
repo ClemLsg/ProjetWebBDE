@@ -31,11 +31,6 @@ class UserTableSeeder extends Seeder
 
             $pict->user()->save($user);
 
-            $random_elem = $faker->randomElement($order_id);
-            $order = Order::find($random_elem);
-            $order_id = array_diff($order_id, array($random_elem));
-
-            $user->orders()->save($order);
 
         }
     }

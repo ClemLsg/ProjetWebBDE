@@ -26,47 +26,25 @@
                             <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
-                            <th scope="col">Promo</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Nom article</th>
-                            <th scope="col">Quantité</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Clément</td>
-                            <td>Lesage</td>
-                            <td>A2</td>
-                            <td>09/01/2018</td>
-                            <td>Bonet Ces'ESport</td>
-                            <td>5</td>
-                            <td>Terminé <i class="fa fa-check" aria-hidden="true"></i></td>
+                        @foreach($commands as $command)
+                            <tr>
+                                <th scope="row">{{$command->id}}</th>
+                                <td>{{$command->user->name}}</td>
+                                <td>{{$command->user->surname}}</td>
+                                <td>{{$command->created_at->format("d M Y H:i")}}</td>
+                                    <td>Terminé <i class="fa fa-check" aria-hidden="true"></i></td>
+                                <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change{{$command->id}}">
+                                        <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
+                                    </button></td>
 
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Antoine</td>
-                            <td>Morlet</td>
-                            <td>A9</td>
-                            <td>02/01/2018</td>
-                            <td>Vaseline Ces'ESport</td>
-                            <td>20</td>
-                            <td>Terminé <i class="fa fa-check" aria-hidden="true"></i></td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Paul</td>
-                            <td>Fontaine</td>
-                            <td>A2</td>
-                            <td>01/01/2018</td>
-                            <td>Pull Ces'ESport</td>
-                            <td>1</td>
-                            <td>Terminé <i class="fa fa-check" aria-hidden="true"></i></td>
-
-                        </tr>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
