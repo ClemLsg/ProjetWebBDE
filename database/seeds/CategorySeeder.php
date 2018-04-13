@@ -12,6 +12,10 @@ class CategorySeeder extends Seeder
     public function run()
     {
         //
-        DB::table('categories')->insert(['name' => 'Sweat'],['name' => 'Mugs'],['name' => 'Tee-Shirt'],['name' => 'Stickers'],['name' => 'Bouffe']);
+        DB::table('categories')->insert(['name' => 'Sweat']);
+        DB::table('categories')->insert(['name' => 'Mugs']);
+        DB::table('categories')->insert(['name' => 'Tee-Shirt']);
+        DB::table('categories')->insert(['name' => 'Stickers']);
+        DB::table('categories')->insert(['name' => 'Bouffe']);
     }
 }
