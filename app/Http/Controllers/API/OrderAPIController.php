@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Order;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
-class ProductsController extends Controller
+class OrderAPIController extends BaseAPIController
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +15,15 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $orders = DB::table('order_product')->pluck('order_id')->toArray();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $order = array();
+
+        foreach($orders as $order_id){
+            array_push($order, Order::find($order_id)->products()->get());
+        }
+
+        return $this->sendPositiveResponse($order, 'Try', 200);
     }
 
     /**
@@ -46,7 +45,13 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = Order::find($id)->products()->get();
+
+        if(is_null($order)){
+            return $this->sendError('Order not found.', 404);
+        }
+
+        return $this->sendPositiveResponse($order->toArray(),'Order properly shown.', 200);
     }
 
     /**
