@@ -31,7 +31,7 @@ Route::get('/image/url', 'CategoryController@jsonUrl');
  * Resource route for the requests about the orders in the API
  * Only the GET /api/orders and GET /api/orders/{order} are allowed.
  */
-Route::resource('orders', 'API\OrderAPIController')->only(['index', 'show']);
+Route::resource('orders', 'API\OrderAPIController')->only(['index', 'show', 'store', 'update', 'destroy']);
 
 /**
  * Resource route for the requests about the pictures in the API

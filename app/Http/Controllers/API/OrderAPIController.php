@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class OrderAPIController extends BaseAPIController
 {
@@ -34,7 +35,35 @@ class OrderAPIController extends BaseAPIController
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'status' => 'required',
+            'user_id' => 'required',
+            'products' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('The content of the request does not satisfy the validator.', 412);
+        }
+
+        Order::create([
+            'status' => $input['status'],
+            'user_id' => $input['user_id']
+        ]);
+
+        $lastEntry = Order::latest()->first();
+        $lastId = $lastEntry['id'];
+
+        foreach($input['products'] as $product){
+            DB::table('order_product')->insert([
+                'order_id' => $lastId,
+                'product_id' => $product['product_id'],
+                'quantity' => $product['quantity']
+            ]);
+    }
+
+        return $this->sendPositiveResponse($input, 'Order created correctly.', 201);
     }
 
     /**
@@ -55,17 +84,6 @@ class OrderAPIController extends BaseAPIController
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -74,7 +92,27 @@ class OrderAPIController extends BaseAPIController
      */
     public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'status' => 'required',
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('Validation Error.', 412);
+        }
+
+        $order = Order::find($id);
+        if (is_null($order)) {
+            return $this->sendError('Activity not found.', 404);
+        }
+
+
+        $order->status = $input['status'];
+        $order->save();
+
+
+        return $this->sendPositiveResponse($order->toArray(), 'Order updated successfully.', 200);
     }
 
     /**
@@ -85,6 +123,22 @@ class OrderAPIController extends BaseAPIController
      */
     public function destroy($id)
     {
-        //
+        $products = DB::table('order_product')->where('order_id', '=',$id)->get();
+
+        if(is_null($products)){
+            return $this->sendError('No products in this order.', '404');
+        }
+
+        DB::table('order_product')->where('order_id', '=',$id)->delete();
+
+        $order = Order::find($id);
+
+        if(is_null($order)){
+            return $this->sendError('Order not found.', 404);
+        }
+
+        $order->delete();
+
+        return $this->sendPositiveResponse($id, 'Order deleted successfully.', 200);
     }
 }

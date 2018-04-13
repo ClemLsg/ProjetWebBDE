@@ -8,7 +8,7 @@ class Order extends Model
 {
     //
     protected $fillable = [
-        'status',
+        'status', 'user_id'
     ];
 
     public function users()
