@@ -26,49 +26,37 @@
                             <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
-                            <th scope="col">Promo</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Nom article</th>
-                            <th scope="col">Quantité</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Clément</td>
-                            <td>Lesage</td>
-                            <td>A2</td>
-                            <td>09/01/2018</td>
-                            <td>Bonet Ces'ESport</td>
-                            <td>5</td>
-                            <td>Paiement éspece en attente <i class="fa fa-money" aria-hidden="true"></i></td>
-                            <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change">
-                                    <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
-                                </button></td>
+                        @foreach($commands as $command)
+                            <tr>
+                                <th scope="row">{{$command->id}}</th>
+                                <td>{{$command->user->name}}</td>
+                                <td>{{$command->user->surname}}</td>
+                                <td>{{$command->created_at->format("d M Y H:i")}}</td>
+                                @switch($command->status)
+                                    @case(1)
+                                        <td>Paiement Paypal validé <i class="fa fa-cc-paypal" aria-hidden="true"></i></td>
+                                    @break
+                                    @case(2)
+                                        <td>Paiement éspece en attente <i class="fa fa-money" aria-hidden="true"></i></td>
+                                    @break
+                                @endswitch
+                                <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change{{$command->id}}">
+                                        <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
+                                    </button></td>
 
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Paul</td>
-                            <td>Fontaine</td>
-                            <td>A2</td>
-                            <td>01/01/2018</td>
-                            <td>Pull Ces'ESport</td>
-                            <td>1</td>
-                            <td>Paiement validé <i class="fa fa-paypal" aria-hidden="true"></i></td>
-                            <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change">
-                                    <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true">
-
-                                    </span>
-                                </button></td>
-
-                        </tr>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
-                <div class="modal fade" id="change" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                @foreach($commands as $command)
+                <div class="modal fade" id="change{{$command->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -77,38 +65,42 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <form method="post" action="{{route('ChangeStatusCommand', $command->id)}}">
                             <div class="modal-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Paiement validé
-                                        <i class="fa fa-paypal" aria-hidden="true"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Paiement en attente
-                                        <i class="fa fa-money" aria-hidden="true"></i>
+                                    {{csrf_field()}}
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status" id="paiementvalide" value="1">
+                                        <label class="form-check-label" for="paiementvalide">
+                                            Paiement validé
+                                            <i class="fa fa-paypal" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status" id="paiementattente" value="2">
+                                        <label class="form-check-label" for="paiementattente">
+                                            Paiement en attente
+                                            <i class="fa fa-money" aria-hidden="true"></i>
 
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Terminé
-                                        <i class="fa fa-check" aria-hidden="true"></i>
-
-                                    </label>
-                                </div>
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status" id="termine" value="0">
+                                        <label class="form-check-label" for="termine">
+                                            Terminé
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <div class="card-footer small text-muted">Listes des commandes à jour sans délais</div>
             </div>
             </div>
