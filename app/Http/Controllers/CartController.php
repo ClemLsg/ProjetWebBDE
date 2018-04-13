@@ -78,7 +78,7 @@ class CartController extends Controller
             'status' => $type
         ]);
 
-        $user->orders()->attach($order->id);
+        $user->orders()->save($order);
 
         foreach ($cart as $prod){
             $order->products()->attach($prod->id, array('quantity' => $prod->cart->quantity));

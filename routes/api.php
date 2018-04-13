@@ -24,7 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  */
 Route::resource('products','API\ProductsAPIController')->except(['create', 'edit']);
 
-Route::get('/products/{name}', 'CategoryController@jsonProducts');
+Route::get('/category/{name}', 'CategoryController@jsonProducts');
 Route::get('/image/url', 'CategoryController@jsonUrl');
 
 /**

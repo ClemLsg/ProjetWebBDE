@@ -13,7 +13,7 @@ class Order extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User')->as('users');
+        return $this->belongsTo('App\User');
     }
 
     public function products()
