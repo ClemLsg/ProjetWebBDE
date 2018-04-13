@@ -9,7 +9,7 @@ showPage(1);
 
 function expandResults(filterValue){
     let request = new XMLHttpRequest();
-    request.open("GET", "/api/products/"+filterValue, false);
+    request.open("GET", "/api/category/"+filterValue, false);
     request.send(null);
     let responses = JSON.parse(request.responseText);
     document.getElementById("category-container").innerHTML = "";

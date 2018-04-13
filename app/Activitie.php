@@ -8,7 +8,7 @@ class Activitie extends Model
 {
     //
     protected $fillable = [
-        'name', 'description', 'price', 'recurrent',
+        'name', 'description', 'price', 'recurrent', 'date', 'user_id',
     ];
 
     public function users()

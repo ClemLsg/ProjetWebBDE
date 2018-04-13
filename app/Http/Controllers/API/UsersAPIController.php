@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
-class ProductsController extends Controller
+class UsersAPIController extends BaseAPIController
 {
     /**
      * Display a listing of the resource.
@@ -14,17 +16,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $user = User::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return $this->sendPositiveResponse($user, 'All users retrieved successfully.', 200);
     }
 
     /**
@@ -35,7 +29,23 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $validator = Validator::make($input, [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'surname' => 'required',
+            'rank' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return $this->sendError('The content of the request does not satisfy the validator.', 412);
+        }
+
+        $user = User::create($input);
+
+        return $this->sendPositiveResponse($user->toArray(),'User created successfully.', 201);
     }
 
     /**
@@ -46,18 +56,13 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        $user = User::find($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        if(is_null($user)){
+            return $this->sendError('User not found.',404);
+        }
+
+        return $this->sendPositiveResponse($user->toArray(),'The wanted user has been retrieved successfully.',200);
     }
 
     /**

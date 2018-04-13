@@ -35,7 +35,7 @@ class UserTableSeeder extends Seeder
             $order = Order::find($random_elem);
             $order_id = array_diff($order_id, array($random_elem));
 
-            $user->orders()->attach($order);
+            $user->orders()->save($order);
 
         }
     }
