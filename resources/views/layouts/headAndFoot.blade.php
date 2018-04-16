@@ -22,6 +22,7 @@ $cart = Auth::user()->cart;
     <link rel="stylesheet" href="{{ asset('css/material.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/idea.css') }}">
+
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
@@ -60,8 +61,8 @@ $cart = Auth::user()->cart;
                             {{\Illuminate\Support\Facades\Auth::user()->name}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Mes commandes</a>
-                            <a class="dropdown-item" href="#">Mon compte</a>
+                            <a class="dropdown-item" href="{{route('commandes_user')}}">Mes commandes</a>
+                            <a class="dropdown-item" href="{{route('user')}}">Mon compte</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{route("logout")}}">Déconnexion</a>
                         </div>
