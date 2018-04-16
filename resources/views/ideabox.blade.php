@@ -24,8 +24,8 @@
                         <hr class="hr col-md-1 offset-1">
                         <div class="col-md-3 icon offset-10">
                                     <span class="input-group-btn">
-                                        <i class="fa fa-thumbs-up"></i>
-                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-thumbs-up fa-2x"></i>
+                                        <i class="fa fa-edit fa-2x"></i>
                                     </span>
                         </div>
                     </div>
@@ -43,8 +43,8 @@
                                         <hr class="hr col-md-1 offset-1">
                                         <div class="col-md-3 icon offset-10">
                                     <span class="input-group-btn">
-                                        <i class="fa fa-thumbs-up"></i>
-                                        <i class="fa fa-edit"></i>
+                                        <i class="fa fa-thumbs-up fa-2x"></i>
+                                        <i class="fa fa-edit fa-2x"></i>
                                     </span>
                                         </div>
                                     </div>
@@ -62,8 +62,8 @@
                                         <hr class="hr col-md-1 offset-1">
                                         <div class="col-md-3 offset-10 ">
                                             <span class="input-group-btn">
-                                                <i class="fa fa-thumbs-up"></i>
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-thumbs-up fa-2x"></i>
+                                                <i class="fa fa-edit fa-2x"></i>
                                             </span>
                                         </div>
                                     </div>
@@ -96,7 +96,7 @@
                 <h5>Faire un post</h5>
                 <div class="form-text">
                     <textarea class="form-control"  id="example" rows="3"></textarea>
-                    <button type="button" class="btn btn-primary btn-lg btn-block bouton">Envoie FDP</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block bouton">Envoyer</button>
                 </div>
             </div>
             <div class="best"></div>
