@@ -31,6 +31,8 @@ class ActivitiesSeeder extends Seeder
 
             $pict = Picture::find($faker->numberBetween(2,20));
 
+            $acti->users()->save($user);
+
             $acti->pictures()->save($pict);
 
             $user->propose()->save($acti);

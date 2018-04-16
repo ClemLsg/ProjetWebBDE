@@ -29,7 +29,7 @@ Route::get('/image/url', 'CategoryController@jsonUrl');
 
 /**
  * Resource route for the requests about the orders in the API
- * Only the GET /api/orders and GET /api/orders/{order} are allowed.
+ * Everything is allowed except the edit and create through GET request
  */
 Route::resource('orders', 'API\OrderAPIController')->only(['index', 'show', 'store', 'update', 'destroy']);
 
@@ -50,3 +50,9 @@ Route::resource('users', 'API\UsersApiController')->only(['index', 'show']);
  * Everything is allowed except the edit and create through GET request
  */
 Route::resource('activities', 'API\ActivitiesAPIController')->except(['create', 'edit']);
+
+/**
+ * Resource route for the requests about the users activities in the API
+ * Everything is allowed except the edit, create through GET request and update through PUT
+ */
+Route::resource('activitiesUsers','API\ActivitieUserAPIController')->except(['create', 'edit', 'update']);
