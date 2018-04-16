@@ -96,7 +96,7 @@
                 <h5>Faire un post</h5>
                 <div class="form-text">
                     <textarea class="form-control"  id="example" rows="3"></textarea>
-                    <button type="button" class="btn btn-primary btn-lg btn-block bouton">Envoie FDP</button>
+                    <button type="button" class="btn btn-primary btn-lg btn-block bouton">Envoyer</button>
                 </div>
             </div>
             <div class="best"></div>
