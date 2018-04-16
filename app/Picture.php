@@ -21,6 +21,11 @@ class Picture extends Model
         return $this->belongsToMany('App\User')->as('users');
     }
 
+    public function reporter()
+    {
+        return $this->belongsToMany('App\User','report_picture')->withPivot('reason')->as('reporter');
+    }
+
     public function user()
     {
         return $this->hasMany('App\User');

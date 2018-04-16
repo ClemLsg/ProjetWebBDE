@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function propose()
     {
-        return $this->hasMany('App\Activitie');
+        return $this->hasMany('App\IdeaBox');
     }
 
     public function comments()
@@ -59,6 +59,11 @@ class User extends Authenticatable
 
     public function avatar()
     {
-        return $this->belongsTo('App\Picture');
+        return $this->belongsTo('App\Picture','picture_id');
+    }
+
+    public function vote()
+    {
+        return $this->belongsToMany('App\IdeaBox');
     }
 }

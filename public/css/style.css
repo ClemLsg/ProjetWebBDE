@@ -54,3 +54,7 @@ footer {
 footer a {
     color: #f8f9fa!important
 }
+
+form .error {
+    color: #ff0000;
+}
