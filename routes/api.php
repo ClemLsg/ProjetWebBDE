@@ -56,3 +56,9 @@ Route::resource('activities', 'API\ActivitiesAPIController')->except(['create', 
  * Everything is allowed except the edit, create through GET request and update through PUT
  */
 Route::resource('activitiesUsers','API\ActivitieUserAPIController')->except(['create', 'edit', 'update']);
+
+/**
+ * Resource route for the requests about the comments activities in the API
+ * Everything is allowed except the edit and create through GET request
+ */
+Route::resource('comments', 'API\CommentsAPIController')->except(['create', 'edit']);
