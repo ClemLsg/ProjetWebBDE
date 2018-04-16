@@ -24,6 +24,9 @@ Route::get('/category', 'CategoryController@index')->name('category');
 Route::get('/cart', 'CartController@index')->name('cart');
 
 Route::get('/user', 'UserPageController@index')->name('user');
+Route::get('/commandes', 'UserPageController@commandes')->name('commandes_user');
+Route::post('/user/changeavatar', 'UserPageController@changeAvatar')->name('changeAvatar');
+Route::post('/user/changedata', 'UserPageController@changeData')->name('changeData');
 
 Route::get('/contact','ContactController@index')->name('contact');
 
