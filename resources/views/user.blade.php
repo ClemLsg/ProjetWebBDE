@@ -14,73 +14,72 @@
     <div class="row">
         <!-- left column -->
         <div class="col-md-3">
-            <div class="text-center">
-                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-                <h6>Choisir autre photo</h6>
-
-                <input type="file" class="form-control">
-            </div>
+            <form class="form-horizontal" role="form" method="post" action="{{route('changeAvatar')}}" enctype="multipart/form-data">
+                {{csrf_field()}}
+                <div class="text-center">
+                    <img src="{{$user->avatar->url}}" class="avatar img-circle" alt="avatar" style="max-width: 100px; max-height: 100px">
+                    <div class="form-group">
+                        <label for="file">Example file input</label>
+                        <input type="file" class="form-control-file" name="avatar" id="file">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Mettre cette photo trop swag</button>
+                </div>
+            </form>
         </div>
 
         <!-- edit form column -->
         <div class="col-md-9 personal-info">
-            <div class="alert alert-info alert-dismissable">
-                <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-camera-retro"></i>
-                Vous n'avez pas encore importé de <strong>photo</strong>. Une image vaut mieux que de long discours vous ne trouvez pas ?
-            </div>
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show col-sm-6 offset-3 text-center">
+                    {{ session('error') }}
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show col-sm-6 offset-3 text-center">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                </div>
+            @endif
             <h3>Information personnelle</h3>
             <br>
-
-            <form class="form-horizontal" role="form">
+            <form class="form-horizontal" role="form" method="post" action="{{route('changeData')}}">
+                {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Prénom:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="Paul">
+                        <input class="form-control" type="text" placeholder="{{$user->name}}" name="name">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Nom:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="Fontaine">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label">Numéro de téléphone:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" type="text" value="06 69 32 11 05">
+                        <input class="form-control" type="text" placeholder="{{$user->surname}}" name="surname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-3 control-label">Email:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" type="text" value="gland@gmail.com">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Nom d'utilisateur:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" type="text" value="LeVeloute">
+                        <input class="form-control" type="text" placeholder="{{$user->email}}" name="email">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Nouveau mot de passe:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="password" value="11111122333">
+                        <input class="form-control" type="password" name="password">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label">Retaper le mot de passe:</label>
                     <div class="col-md-8">
-                        <input class="form-control" type="password" value="11111122333">
+                        <input class="form-control" type="password" name="passwordCheck">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-8">
-                        <input type="button" class="btn btn-primary" value="Sauvegarder" data-toggle="modal" data-target="#exampleModal">
-                        <span></span>
-                        <input type="reset" class="btn btn-default" value="Annuler">
+                        <button type="submit" class="btn btn-primary">Sauvegarder</button>
                     </div>
                 </div>
             </form>
@@ -110,4 +109,37 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            $( '.inputfile' ).each( function()
+            {
+                var $input	 = $( this ),
+                    $label	 = $input.next( 'label' ),
+                    labelVal = $label.html();
+
+                $input.on( 'change', function( e )
+                {
+                    var fileName = '';
+
+                    if( this.files && this.files.length > 1 )
+                        fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+                    else if( e.target.value )
+                        fileName = e.target.value.split( '\\' ).pop();
+
+                    if( fileName )
+                        $label.find( 'span' ).html( fileName );
+                    else
+                        $label.html( labelVal );
+                });
+
+// Firefox bug fix
+                $input
+                    .on( 'focus', function(){ $input.addClass( 'has-focus' ); })
+                    .on( 'blur', function(){ $input.removeClass( 'has-focus' ); });
+            });
+        });
+    </script>
 @endsection
