@@ -15,7 +15,7 @@ class OrdersTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        for($i=0; $i<1000; $i++){
+        for($i=0; $i<50; $i++){
             $order = Order::create([
                 'status' => $faker->numberBetween(0,1)
             ]);
