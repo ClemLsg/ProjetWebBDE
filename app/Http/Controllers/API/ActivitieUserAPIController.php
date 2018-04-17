@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 class ActivitieUserAPIController extends BaseAPIController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the activities.
      *
      * @return \Illuminate\Http\Response
      */

@@ -2,6 +2,7 @@
 
 use App\Activitie;
 use App\Comment;
+use App\IdeaBox;
 use App\Order;
 use App\Picture;
 use App\Product;
@@ -21,6 +22,8 @@ class TruncateTables extends Seeder
         DB::table('picture_product')->truncate();
         DB::table('order_product')->truncate();
         DB::table('activitie_user')->truncate();
+        DB::table('ideabox_user')->truncate();
+        IdeaBox::truncate();
         Order::truncate();
         Picture::truncate();
         Activitie::truncate();

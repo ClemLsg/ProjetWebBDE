@@ -16,7 +16,7 @@ class CreateIdeaboxUserTable extends Migration
         Schema::create('ideabox_user', function (Blueprint $table) {
             $table->integer('ideabox_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->foreign('ideabox_id')->references('id')->on('ideabox');
+            $table->foreign('ideabox_id')->references('id')->on('idea_boxes');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

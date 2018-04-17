@@ -13,7 +13,7 @@ class CreateIdeaBoxTable extends Migration
      */
     public function up()
     {
-        Schema::create('ideabox', function (Blueprint $table) {
+        Schema::create('idea_boxes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('desc');
@@ -30,6 +30,6 @@ class CreateIdeaBoxTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('idea_box');
+        Schema::dropIfExists('idea_boxes');
     }
 }
