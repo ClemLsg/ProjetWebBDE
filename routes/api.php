@@ -62,3 +62,9 @@ Route::resource('activitiesUsers','API\ActivitieUserAPIController')->except(['cr
  * Everything is allowed except the edit and create through GET request
  */
 Route::resource('comments', 'API\CommentsAPIController')->except(['create', 'edit']);
+
+/**
+ * Resource route for the requests about the ideas contained in the idea box in the API
+ * Everything is allowed except the edit and create through GET request
+ */
+Route::resource('ideaBox', 'API\IdeaBoxAPIController')->except(['create', 'edit']);

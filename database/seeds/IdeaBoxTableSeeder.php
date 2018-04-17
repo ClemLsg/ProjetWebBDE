@@ -19,7 +19,7 @@ class IdeaBoxTableSeeder extends Seeder
 
         for($i=0; $i<20; $i++){
             IdeaBox::create([
-                'name' => $faker->name,
+                'name' => $faker->domainWord,
                 'desc' => $faker->text(80),
                 'user_id' => $faker->randomElement($userID)
             ]);
