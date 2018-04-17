@@ -28,7 +28,6 @@
                             <th scope="col">Prénom</th>
                             <th scope="col">Date</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -39,10 +38,6 @@
                                 <td>{{$command->user->surname}}</td>
                                 <td>{{$command->created_at->format("d M Y H:i")}}</td>
                                     <td>Terminé <i class="fa fa-check" aria-hidden="true"></i></td>
-                                <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change{{$command->id}}">
-                                        <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
-                                    </button></td>
-
                             </tr>
                         @endforeach
                         </tbody>
