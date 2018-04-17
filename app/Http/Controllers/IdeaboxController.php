@@ -18,7 +18,7 @@ class IdeaboxController extends Controller
             return $bestboxes->votes->count();
         })->take(3);
         $bde = 0;
-        if (Auth::user()->rank) {
+        if (Auth::check()) {
             if (Auth::user()->rank == 1){
                 $bde = 1;
             }
@@ -41,7 +41,7 @@ class IdeaboxController extends Controller
     }
 
     public function like($id) {
-        if (Auth::user()) {
+        if (Auth::check()) {
             if (Auth::user()->vote()->find($id)){
                 return redirect()->back()->with('error',"Tu as déjà voté");
             } else {
