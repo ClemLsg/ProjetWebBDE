@@ -26,41 +26,23 @@
                             <th scope="col">#</th>
                             <th scope="col">Nom du produit</th>
                             <th scope="col">Stock</th>
-                            <th scope="col">Vendu</th>
+                            <th scope="col">Prix</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Vaseline Ces'ESport</td>
-                            <td>465</td>
-                            <td>20</td>
-                            <td><button type="button" class="btn btn-default" aria-label="Left Align"  data-toggle="modal" data-target="#change">
-                                    <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
-                                </button></td>
+                        @foreach($products as $product)
+                            <tr>
+                                <th scope="row">{{$product->id}}</th>
+                                <td>{{$product->name}}</td>
+                                <td>{{$product->stock}}</td>
+                                <td>{{$product->price}}</td>
+                                <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change{{$product->id}}">
+                                        <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
+                                    </button></td>
 
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Pull Ces'ESport</td>
-                            <td>154</td>
-                            <td>20</td>
-                            <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change">
-                                    <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true" ></span>
-                                </button></td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Pull Ces'ESport</td>
-                            <td>465</td>
-                            <td>20</td>
-                            <td><button type="button" class="btn btn-default" aria-label="Left Align"  data-toggle="modal" data-target="#change">
-                                    <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
-                                </button></td>
-
-                        </tr>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                     <div class="card-footer">
@@ -70,63 +52,97 @@
 
                                 </div>
                                 <div class="col-md-auto">
-                                    <button class="btn btn-lg btn-block btn-success text-uppercase">Ajouter un produit <span class="fa fa-plus" aria-hidden="true"></span></button>
+                                    <button class="btn btn-lg btn-block btn-success text-uppercase" data-toggle="modal" data-target="#addprod">Ajouter un produit <span class="fa fa-plus" aria-hidden="true"></span></button>
                                 </div>
                                 <div class="col col-lg-2">
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="change" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    @foreach($products as $product)
+                        <div class="modal fade" id="change{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Changer le stock</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form method="post" action="{{route('ChangeInfoProduct', $product->id)}}">
+                                        <div class="modal-body">
+                                            {{csrf_field()}}
+                                            <div class="form-group row">
+                                                <label for="example-number-input" class="col-2 col-form-label">Stock réstant</label>
+                                                <div class="col-10">
+                                                    <input class="form-control" type="number" name="stock" value="{{$product->stock}}" id="example-number-input">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                <!-- Modal -->
+                    <div class="modal fade" id="addprod" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Changer status</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Crée un produit</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
 
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
+                                    <form method="post" action="{{route("AddProduct")}}" enctype="multipart/form-data">
+                                        {{csrf_field()}}
+
+                                        <div class="form-group">
+                                            <label for="exampleTextarea">Nom du produit</label>
+                                            <input class="form-control" name="name" id="exampleTextarea"/>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Stock" aria-label="Stock" aria-describedby="basic-addon1">
-                                    </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1"></span>
+                                        <div class="form-group">
+                                            <label for="exampleTextarea">Description du produit</label>
+                                            <textarea class="form-control" name="desc" id="exampleTextarea" rows="3"></textarea>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Ventes" aria-label="Ventes" aria-describedby="basic-addon1">
-                                    </div>
+                                        <div class="form-group">
+                                            <label for="exampleSelect1">Catégorie</label>
+                                            <select class="form-control" name="cat" id="exampleSelect1">
+                                                @foreach($categorys as $category)
+                                                <option>{{$category->name}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleTextarea">Prix du produit</label>
+                                            <input class="form-control" type="number" name="price" value="0" id="example-number-input">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleTextarea">Stock actuel</label>
+                                            <input class="form-control" type="number" name="stock" value="0" id="example-number-input">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputFile">Image du produit</label>
+                                            <input type="file" class="form-control-file" name="image" id="exampleInputFile" aria-describedby="fileHelp">
+                                            <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                                        </div>
                                 </div>
-                                <div class="container">
-                                    <div class="row justify-content-md-center">
-                                        <div class="col col-lg-2">
-                                        </div>
-                                        <div class="col-md-auto">
-                                            <form class="upload">
-                                                <div class="form-group">
-                                                    <label for="exampleFormControlFile1">Upload</label>
-                                                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="col col-lg-2">
-
-                                        </div>
-                                    </div>
-
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
                                 </div>
+                                </form>
                             </div>
                         </div>
-                </div>
-            </div>
+                    </div>
         </div>
     </div>
     </div>

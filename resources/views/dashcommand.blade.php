@@ -49,7 +49,6 @@
                                 <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change{{$command->id}}">
                                         <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
                                     </button></td>
-
                             </tr>
                         @endforeach
                         </tbody>

@@ -52,7 +52,7 @@
                         <div class="carousel-inner">
                             @foreach($produit->pictures()->get() as $pict)
                             <div class="carousel-item active">
-                                <img class="d-block w-100" src="{{$pict->url}}" alt="First slide">
+                                <img class="d-block w-100" src="{{asset($pict->url)}}" alt="First slide">
                             </div>
                             @endforeach
                         </div>
