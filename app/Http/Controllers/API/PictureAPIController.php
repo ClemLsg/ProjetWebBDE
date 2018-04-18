@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Validator;
 class PictureAPIController extends BaseAPIController
 {
     /**
-     * Display a listing of the pictures in a JSON Format.
+     * Display a listing of all pictures by querying through the Picture model.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -21,10 +21,11 @@ class PictureAPIController extends BaseAPIController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created picture in the database.
+     * Use of the Validator facade to make sure that the data sent by the user are correct.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -44,10 +45,10 @@ class PictureAPIController extends BaseAPIController
     }
 
     /**
-     * Display the specified resource.
+     * Display a specific picture by querying through the Picture model.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -61,11 +62,12 @@ class PictureAPIController extends BaseAPIController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified picture in the database.
+     * Use of the Validator facade to make sure that the data sent by the user are correct.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -93,10 +95,10 @@ class PictureAPIController extends BaseAPIController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified picture from the database.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

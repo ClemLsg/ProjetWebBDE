@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Validator;
 class ActivitieUserAPIController extends BaseAPIController
 {
     /**
-     * Display a listing of the activities.
+     * Display a listing of all the user participating to activities by querying through the activity model.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -39,10 +39,11 @@ class ActivitieUserAPIController extends BaseAPIController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created link between an activity and a user in the database.
+     * Use of the Validator facade to make sure that the data sent by the user are correct.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -63,10 +64,10 @@ class ActivitieUserAPIController extends BaseAPIController
     }
 
     /**
-     * Display the specified resource.
+     * Display a list of users participating to a specific activity by querying through the activity model.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -83,10 +84,11 @@ class ActivitieUserAPIController extends BaseAPIController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified users participating to a specific activty from the database.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request, $id)
     {

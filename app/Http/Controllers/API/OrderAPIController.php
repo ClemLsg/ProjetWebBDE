@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Validator;
 class OrderAPIController extends BaseAPIController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all orders by querying through the order_product table.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -28,10 +28,11 @@ class OrderAPIController extends BaseAPIController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created order in the database.
+     * Use of the Validator facade to make sure that the data sent by the user are correct.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -67,10 +68,10 @@ class OrderAPIController extends BaseAPIController
     }
 
     /**
-     * Display the specified resource.
+     * Display a specific order by querying through the order model.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -84,11 +85,12 @@ class OrderAPIController extends BaseAPIController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified order in the database.
+     * Use of the Validator facade to make sure that the data sent by the user are correct.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -116,10 +118,10 @@ class OrderAPIController extends BaseAPIController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified order from the database.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {

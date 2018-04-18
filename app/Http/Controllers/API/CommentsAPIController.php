@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Validator;
 class CommentsAPIController extends BaseAPIController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of all comments by querying through the comment model.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
@@ -22,10 +22,11 @@ class CommentsAPIController extends BaseAPIController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created comment in the database.
+     * Use of the Validator facade to make sure that the data sent by the user are correct.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -47,10 +48,10 @@ class CommentsAPIController extends BaseAPIController
     }
 
     /**
-     * Display the specified resource.
+     * Display a specific comment by querying through the comment model.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show($id)
     {
@@ -64,11 +65,12 @@ class CommentsAPIController extends BaseAPIController
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified comment in the database.
+     * Use of the Validator facade to make sure that the data sent by the user are correct.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -100,10 +102,10 @@ class CommentsAPIController extends BaseAPIController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified comment from the database.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
