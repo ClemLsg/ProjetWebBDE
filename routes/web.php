@@ -64,3 +64,6 @@ Route::get('/dashboard/manageproduct', 'manageproductController@index')->name('m
 Route::get('/dashboard/manageevent', 'manageeventController@index')->name('manageevent');
 
 Route::get('/dashboard/manageaccount', 'manageaccountController@index')->name('manageaccount');
+
+Route::post('dashboard/adduser','manageaccountController@addUser')->name('manageAccountAddUser');
+Route::post('dashboard/updateuser{id}', 'manageaccountController@updateUser')->name('manageAccountUpdateUser');
