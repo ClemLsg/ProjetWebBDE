@@ -43,7 +43,8 @@ class IdeaboxController extends Controller
     public function like($id) {
         if (Auth::check()) {
             if (Auth::user()->vote()->find($id)){
-                return redirect()->back()->with('error',"Tu as déjà voté");
+                Auth::user()->vote()->detach($id);
+                return redirect()->back()->with('error',"Ton vote a bien été retiré");
             } else {
                 Auth::user()->vote()->attach($id);
                 return redirect()->back()->with('success',"Ton vote a bien été pris en compte");

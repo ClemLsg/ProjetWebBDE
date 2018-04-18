@@ -34,7 +34,7 @@ class User extends Authenticatable
 
     public function events()
     {
-        return $this->hasMany('App\Activitie');
+        return $this->hasMany('App\Activitie', 'activitie_id');
     }
 
     public function propose()

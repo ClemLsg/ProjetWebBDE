@@ -3,12 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Activitie extends Model
 {
-    //
+
     protected $fillable = [
         'name', 'description', 'price', 'recurrent', 'date', 'user_id',
+    ];
+
+    protected $dates = [
+        'date'
     ];
 
     public function users()
@@ -23,6 +28,6 @@ class Activitie extends Model
 
     public function creator()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'user_id');
     }
 }

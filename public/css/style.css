@@ -58,3 +58,17 @@ footer a {
 form .error {
     color: #ff0000;
 }
+
+.like{
+    color: grey;
+}
+
+.like:hover{
+    color: #009688;
+}
+
+.img-event {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
