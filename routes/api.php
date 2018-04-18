@@ -26,6 +26,7 @@ Route::resource('products','API\ProductsAPIController')->except(['create', 'edit
 
 Route::get('/category/{name}', 'CategoryController@jsonProducts');
 Route::get('/image/url', 'CategoryController@jsonUrl');
+Route::get('/allproducts', 'CategoryController@jsonAllProducts');
 
 /**
  * Resource route for the requests about the orders in the API

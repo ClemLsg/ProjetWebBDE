@@ -39,6 +39,11 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-sm-3">
+            <nav class="navbar navbar-light bg-light mb-3">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" id="research" type="search" placeholder="Search" aria-label="Search">
+                </form>
+            </nav>
             <div class="card bg-light mb-3">
                 <div class="card-header bg-primary text-white text-uppercase"><i class="fa fa-list"></i> Catégorie</div>
                 <ul class="list-group category_block">
@@ -94,5 +99,8 @@
 @endsection
 
 @section('scripts')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="{{ asset('js/category.js') }}"></script>
 @endsection

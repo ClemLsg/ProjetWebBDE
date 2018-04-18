@@ -109,3 +109,18 @@ function showPage(id) {
 
     });
 }
+
+var products = [];
+
+$.getJSON("http://localhost:8000/api/allproducts", function(data){
+    for(var i=0; i<data.length; i++){
+        products[i] = data[i].name;
+    }
+});
+console.log(products);
+
+$( function() {
+    $( "#research" ).autocomplete({
+        source: products
+    });
+} );

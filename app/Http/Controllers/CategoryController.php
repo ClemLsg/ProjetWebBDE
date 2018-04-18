@@ -40,4 +40,10 @@ class CategoryController extends Controller
 
         return response()->json($url);
     }
+
+    public function jsonAllProducts(){
+        $products = Product::all('name');
+
+        return response()->json($products, 200);
+    }
 }
