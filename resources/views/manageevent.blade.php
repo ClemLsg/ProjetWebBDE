@@ -20,7 +20,7 @@
                 <div class="card-header">
                     <i class="fa fa-calendar"></i> Evenement prévu</div>
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table" style="text-align: center">
                         <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
@@ -28,6 +28,7 @@
                             <th scope="col">Prix</th>
                             <th scope="col">Date</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Participants</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,6 +41,11 @@
                             <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change{{$act->id}}" >
                                     <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
                                 </button></td>
+                            <td style="text-align: center"><a class="btn btn-default" aria-label="Left Align" href="{{route('partipateevents')}}">
+                                    <span class="fa fa-user fa-2x" aria-hidden="true"></span>
+                                </a>
+
+                            </td>
 
                         </tr>
                         @endforeach
