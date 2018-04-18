@@ -33,6 +33,9 @@ Route::get('/contact','ContactController@index')->name('contact');
 Route::get('/shop', 'ShopController@index')->name('shop');
 
 Route::get('/ideabox', 'IdeaboxController@index')->name('ideabox');
+Route::post("/ideabox/propose", "IdeaboxController@addidea")->name('addidea');
+Route::post("/ideabox/transform/{id}", "IdeaboxController@createevent")->name('transformevent');
+Route::get("/ideabox/like/{id}", "IdeaboxController@like")->name('likeidea');
 
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 

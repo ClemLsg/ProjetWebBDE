@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Activitie')->as('activities');
     }
 
+    public function events()
+    {
+        return $this->hasMany('App\Activitie');
+    }
+
     public function propose()
     {
         return $this->hasMany('App\IdeaBox');
@@ -64,6 +69,6 @@ class User extends Authenticatable
 
     public function vote()
     {
-        return $this->belongsToMany('App\IdeaBox');
+        return $this->belongsToMany('App\IdeaBox', 'ideabox_user','user_id', 'ideabox_id');
     }
 }
