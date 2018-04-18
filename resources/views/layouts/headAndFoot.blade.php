@@ -40,13 +40,10 @@ $cart = Auth::user()->cart;
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("product", 1)}}">Produits</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{route("category")}}">Catégories</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("contact")}}">A Propos</a>
+                    <a class="nav-link" href="{{route("ideabox")}}">Boite a idées</a>
                 </li>
                 @guest
                     <li class="nav-item">
@@ -63,8 +60,11 @@ $cart = Auth::user()->cart;
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{route('commandes_user')}}">Mes commandes</a>
                             <a class="dropdown-item" href="{{route('user')}}">Mon compte</a>
+                            @if(Auth::user()->rank > 0)
+                                <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
+                            @endif
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{route("logout")}}">Déconnexion</a>
+                            <a class="dropdown-item" href="{{route("logout")}}"><i class="fa fa-sign-out" aria-hidden="true"></i>Déconnexion</a>
                         </div>
                     </li>
                 @endguest

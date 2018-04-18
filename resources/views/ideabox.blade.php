@@ -11,6 +11,7 @@
     </section>
     @if (session('error'))
         <div class="alert alert-danger alert-dismissible fade show col-sm-6 offset-3 text-center">
+            <i class="fa fa-times" aria-hidden="true"></i>
             {{ session('error') }}
             <button type="button" class="close" data-dismiss="alert">&times;</button>
         </div>
@@ -41,9 +42,21 @@
                             <div class="col-md-4 text-center justify-content-center mb-5 hr">
                                 <div class="row mb-2">
                                     <div class="col-md-12">
-                                        <a href="{{route('likeidea', $box->id)}}">
-                                            <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
-                                        </a>
+                                        @guest
+                                            <a href="{{route('likeidea', $box->id)}}">
+                                                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                                            </a>
+                                            @else
+                                        @if(!Auth::user()->vote()->find($box->id))
+                                            <a href="{{route('likeidea', $box->id)}}">
+                                                <i class="fa fa-thumbs-up fa-2x like" aria-hidden="true"></i>
+                                            </a>
+                                        @else
+                                            <a href="{{route('likeidea', $box->id)}}">
+                                                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                                            </a>
+                                        @endif
+                                        @endguest
                                         <h4>{{$box->votes->count()}}</h4>
                                     </div>
                                 </div>
@@ -104,8 +117,31 @@
 
                 <div class="card-body scroll">
                     @foreach($bestboxes as $box)
-                        <h4 id="fat">{{$box->name}}</h4>
-                        <p>{{$box->desc}}</p>
+                        <div class="row" style="border-bottom: 1px solid hsla(200, 10%, 50%,100);">
+                            <div class="col-sm-8">
+                                <h4 id="fat">{{$box->name}}</h4>
+                                <p>{{$box->desc}}</p>
+                            </div>
+                            <div class="col-sm-2 offset-2 align-content-center pt-4 pb-4">
+                                @guest
+                                    <a href="{{route('likeidea', $box->id)}}">
+                                        <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                                    </a>
+                                @else
+                                    @if(!Auth::user()->vote()->find($box->id))
+                                        <a href="{{route('likeidea', $box->id)}}">
+                                            <i class="fa fa-thumbs-up fa-2x like" aria-hidden="true"></i>
+                                        </a>
+                                    @else
+                                        <a href="{{route('likeidea', $box->id)}}">
+                                            <i class="fa fa-thumbs-up fa-2x" aria-hidden="true"></i>
+                                        </a>
+                                    @endif
+                                @endguest
+
+                                <h4>{{$box->votes->count()}}</h4>
+                            </div>
+                        </div>
                     @endforeach
 
                 </div>
