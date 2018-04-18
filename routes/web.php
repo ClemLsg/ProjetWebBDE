@@ -55,7 +55,11 @@ Route::post('/dashboard/command/changestatus/{id}', 'DashcommandController@chang
 
 Route::post('/dashboard/product/changeinfo/{id}', 'manageproductController@changeInfo')->name('ChangeInfoProduct');
 
+Route::post('/dashboard/event/deleteevent/{id}', 'manageeventController@deleteevent')->name('DeleteEvent');
+
 Route::post('/dashboard/product/addinfo/', 'manageproductController@addProduct')->name('AddProduct');
+
+Route::post('/dashboard/product/addevent/', 'manageeventController@addEvent')->name('AddEvent');
 
 Route::get('/dashboard/pastcommand', 'pastcommandController@index')->name('pastcommand');
 
