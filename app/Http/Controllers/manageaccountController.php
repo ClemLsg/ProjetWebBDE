@@ -32,7 +32,7 @@ class manageaccountController extends Controller
         User::create([
             'name' => $request->input('firstname'),
             'email' => $request->input('email'),
-            'password' => Hash::make('petitcheval'),
+            'password' => Hash::make('password'),
             'surname' => $request->input('surname'),
             'rank' => intval($request->input('customRadioInline1'))
         ]);
