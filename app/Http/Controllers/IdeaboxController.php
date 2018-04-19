@@ -70,14 +70,19 @@ class IdeaboxController extends Controller
 
         $name = str_replace($a, $b, $event->name);
         $image = $request->file('image');
-        $filename = $name . '.' . $image->getClientOriginalExtension();
-        $image->move('public/pictures/activities',$filename);
+        $filename = 'public/pictures/activitie/' . $name . time() . '.' . $image->getClientOriginalExtension();
+        Image::make($image->getRealPath())->resize(640, 480, function($constraint)
+        {
+            $constraint->aspectRatio();
+        })->save($filename);
 
         $pict = Picture::create([
-            'url' => 'public/pictures/activities/'.$filename
+            'url' => $filename
         ]);
 
         $event->pictures()->save($pict);
+
+        $event->save();
 
         Schema::disableForeignKeyConstraints();
         IdeaBox::find($id)->votes()->detach();

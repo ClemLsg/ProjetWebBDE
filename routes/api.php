@@ -40,6 +40,7 @@ Route::resource('orders', 'API\OrderAPIController')->only(['index', 'show', 'sto
  */
 Route::resource('pictures', 'API\PictureAPIController')->except(['create', 'edit']);
 Route::get('image/comments/{id}', 'API\PictureAPIController@showComments');
+Route::get('likes', 'EventController@jsonLikes');
 
 /**
  * Resource route for the requests about the users in the API.

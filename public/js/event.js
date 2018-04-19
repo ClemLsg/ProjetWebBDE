@@ -1,6 +1,27 @@
 let userpict = document.getElementsByClassName('userpict');
 let imgs = document.getElementsByClassName('imgs');
 
+var inputs = document.querySelectorAll( '.inputfile' );
+Array.prototype.forEach.call( inputs, function( input )
+{
+    var label	 = input.nextElementSibling,
+        labelVal = label.innerHTML;
+
+    input.addEventListener( 'change', function( e )
+    {
+        var fileName = '';
+        if( this.files && this.files.length > 1 )
+            fileName = ( this.getAttribute( 'data-multiple-caption' ) || '' ).replace( '{count}', this.files.length );
+        else
+            fileName = e.target.value.split( '\\' ).pop();
+
+        if( fileName )
+            label.querySelector( 'span' ).innerHTML = fileName;
+        else
+            label.innerHTML = labelVal;
+    });
+});
+
 Array.prototype.forEach.call(userpict, function(userpict){
     let width = userpict.offsetWidth;
     userpict.style.height = width  + "px";
@@ -10,6 +31,9 @@ Array.prototype.forEach.call(imgs, function(imgs){
     let width = imgs.offsetWidth;
     imgs.style.paddingBottom = width  + "px";
 });
+
+var months = ["JAN", "FEB", "MARS", "AVRIL", "MAI", "JUIN", "JUIL", "AOUT", "SEP", "OCT", "NOV", "DEC"];
+var days = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 
 getData();
 
@@ -29,6 +53,11 @@ function getData() {
     request3.open("GET", "/api/pictures", false);
     request3.send(null);
     pictures = JSON.parse(request3.responseText);
+
+    let request4 = new XMLHttpRequest();
+    request4.open("GET", "/api/likes", false);
+    request4.send(null);
+    likes = JSON.parse(request4.responseText);
 }
 
 function showComments(id) {
@@ -60,7 +89,8 @@ function showComments(id) {
             usercomment.innerHTML = comments.content;
             userdate = document.createElement("span");
             userdate.setAttribute("class", "date sub-text");
-            userdate.innerHTML = comments.created_at;
+            let date = new Date(comments.created_at);
+            userdate.innerHTML = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getFullYear() + ' à ' + date.getHours() + ':'+ date.getMinutes() + ':'+ date.getSeconds() ;
 
             commenttext.appendChild(nameuser);
             commenttext.appendChild(usercomment);
@@ -91,7 +121,7 @@ function whosVisible() {
 
         likes = document.getElementById("likes");
         likes.innerHTML = '';
-        likes.innerHTML = pict[0].getAttribute('likes') + ' ' + '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>';
+        likes.innerHTML = likes[pict[0]] + ' ' + '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>';
 
         idform = document.getElementById('idform');
         idform.setAttribute('value', idimg)
@@ -113,8 +143,10 @@ function whosVisible() {
                 .then(function (response) {
                     console.log(response);
                     $('#commentcontent').val('');
-                    getData();
-                    whosVisible();
+                    setTimeout(function(){
+                        getData();
+                        whosVisible();
+                    }, 300);
                 })
                 .catch(function (error) {
                     console.log(error);

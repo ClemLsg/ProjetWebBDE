@@ -29,22 +29,31 @@
                                 </ul>
                             </div>
                         </div>
-                        @guest
-                        @else
-                            @if(Auth::user()->activities->contains($event->id))
-                                <a href="" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> Tu est déja inscrit !</a>
-                            @else
-                                <a href="{{route("sub", $event->id)}}" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> S'inscrire</a>
-                            @endif
-                            <form class="form-inline" role="form" method="post" action="{{route('postImg', $event->id)}}" enctype="multipart/form-data">
-                                {{csrf_field()}}
-                                <div class="text-center">
-                                    <div class="form-group">
-                                        <input type="file" class="form-control-file" name="image" id="image">
+                        <div class="row row-striped">
+                            <div class="col-sm-2">
+                                @guest
+                                @else
+                                    @if(Auth::user()->activities->contains($event->id))
+                                        <a href="" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> Tu est déja inscrit !</a>
+                                    @else
+                                        <a href="{{route("sub", $event->id)}}" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> S'inscrire</a>
+                                    @endif
+                            </div>
+                            <div class="col-sm-8">
+                                <form class="form-inline" role="form" method="post" action="{{route('postImg', $event->id)}}" enctype="multipart/form-data">
+                                    {{csrf_field()}}
+                                    <div class="text-center">
+                                        <div class="form-group">
+                                            <input type="file" name="image" id="file-1" class="inputfile" data-multiple-caption="{count} files selected" multiple />
+                                            <label for="file-1" class="btn btn-outline-primary"><span class="text-uppercase"><i class="fa fa-upload" aria-hidden="true"></i> selectionner une photo</span></label>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> uploader la photo</button>
+                                        </div>
                                     </div>
-                                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-upload" aria-hidden="true"></i> Ajouter une photo</button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
+                        </div>
                         @endguest
                     </div>
                     <div class="card-body text-muted">

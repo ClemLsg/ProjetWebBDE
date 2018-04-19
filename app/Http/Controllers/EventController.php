@@ -66,7 +66,10 @@ class EventController extends Controller
         $name = str_replace($a, $b, $event->name);
         $image = $request->file('image');
         $filename = 'public/pictures/activitie/' . $name . time() . '.' . $image->getClientOriginalExtension();
-        Image::make($image->getRealPath())->resize(640, 480)->save($filename);
+        Image::make($image->getRealPath())->resize(640, 480, function($constraint)
+        {
+            $constraint->aspectRatio();
+        })->save($filename);
 
         $pict = Picture::create([
             'url' => $filename
@@ -89,5 +92,16 @@ class EventController extends Controller
 
         return response()->json(['responseText' => 'Success!'], 200);
 
+    }
+
+    public function jsonLikes(){
+        $pictures = Picture::all();
+        $loop = 1;
+        foreach ($pictures as $pict){
+            $likes[$loop] = $pict->likes->count();
+            $loop++;
+        }
+
+        return response()->json($likes);
     }
 }
