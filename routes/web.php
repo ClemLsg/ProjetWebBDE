@@ -76,8 +76,15 @@ Route::post('dashboard/adduser','manageaccountController@addUser')->name('manage
 
 Route::post('dashboard/updateuser{id}', 'manageaccountController@updateUser')->name('manageAccountUpdateUser');
 
-Route::get('/dashboard/partipateevents', 'partipateeventsController@index')->name('partipateevents');
-
 Route::get('/event/{id}', 'EventController@index')->name('event');
 Route::post('/commenton/event', 'EventController@comment')->name('comment');
+Route::post('/like/picture', 'EventController@like')->name('like');
+Route::post('/report/picture', 'EventController@report')->name('report');
+Route::get('/event/{id}/participate', 'EventController@sub')->name('sub');
+Route::post('/event/{id}/uploadphoto', 'EventController@postImg')->name('postImg');
+
+Route::get('/events', 'EventsController@index')->name('events');
+
+
+
 Route::get('/dashboard/partipateevents/{id}', 'partipateeventsController@index')->name('partipateevents');

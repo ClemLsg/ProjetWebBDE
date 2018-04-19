@@ -29,11 +29,23 @@
                                 </ul>
                             </div>
                         </div>
-                        <a href="{{route("event", $event->id)}}" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> S'inscrire</a>
-                        <a href="{{route("event", $event->id)}}" class="btn btn-outline-primary"><i class="fa fa-upload" aria-hidden="true"></i> Ajouter une photo</a>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="whosVisible()">
-                            Launch demo modal
-                        </button>
+                        @guest
+                        @else
+                            @if(Auth::user()->activities->contains($event->id))
+                                <a href="" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> Tu est déja inscrit !</a>
+                            @else
+                                <a href="{{route("sub", $event->id)}}" class="btn btn-outline-primary"><i class="fa fa-check" aria-hidden="true"></i> S'inscrire</a>
+                            @endif
+                            <form class="form-inline" role="form" method="post" action="{{route('postImg', $event->id)}}" enctype="multipart/form-data">
+                                {{csrf_field()}}
+                                <div class="text-center">
+                                    <div class="form-group">
+                                        <input type="file" class="form-control-file" name="image" id="image">
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-upload" aria-hidden="true"></i> Ajouter une photo</button>
+                                </div>
+                            </form>
+                        @endguest
                     </div>
                     <div class="card-body text-muted">
                         <div class="row mt-2 mb-4">
@@ -82,11 +94,13 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            @foreach($event->pictures as $pict)
-                                <div class="col-sm-4 mb-4">
-                                    <div style="background-image: url({{asset($pict->url)}})" class="img-event col-sm-12 imgs">
+                            @foreach($event->pictures as $indexKey => $pict)
+                                @if(is_null($pict->reason))
+                                    <div class="col-sm-4 mb-4">
+                                        <div style="background-image: url({{asset($pict->url)}}); cursor:pointer;" class="img-event col-sm-12 imgs" onclick="$('#exampleModal').modal('show'); $('#CarouselModal').carousel({{$indexKey}}); whosVisible()">
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -103,11 +117,11 @@
                             <div id="CarouselModal" class="carousel slide" data-ride="carousel" data-interval="false">
                                 <div class="carousel-inner">
                                     @foreach($event->pictures as $pict)
-                                        @if ($loop->first)
+                                        @if ($loop->first && is_null($pict->reason))
                                             <div class="carousel-item active" id="{{$pict->id}}" username="{{$pict->postedby->name}}" userpicturl="{{asset($pict->postedby->avatar->url)}}" dateofpost="{{$pict->created_at->format('d M Y')}}" likes="{{$pict->likes->count()}}">
                                                 <img class="d-block m-auto" src="{{asset($pict->url)}}">
                                             </div>
-                                        @else
+                                        @elseif(is_null($pict->reason))
                                         <div class="carousel-item" id="{{$pict->id}}" username="{{$pict->postedby->name}}" userpicturl="{{asset($pict->postedby->avatar->url)}}" dateofpost="{{$pict->created_at->format('d M Y')}}" likes="{{$pict->likes->count()}}">
                                             <img class="d-block m-auto" src="{{asset($pict->url)}}" />
                                         </div>
@@ -134,8 +148,21 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
-                                            <button class="btn btn-outline-primary" type="button" id="likes"></button>
-                                            <button class="btn btn-outline-danger" type="button"><i class="fa fa-flag" aria-hidden="true"></i></button>
+                                            @guest
+                                                @else
+                                                <form id="likeform" class="form-horizontal" role="form" method="post" action="{{route('like')}}" enctype="multipart/form-data">
+                                                    {{csrf_field()}}
+                                                    <input id="idform" type="hidden" name="post_id" value="">
+                                                    <button class="btn btn-outline-primary" type="submit" id="likes"></button>
+                                                </form>
+                                                @if(Auth::user()->rank == 2)
+                                                    <form id="reportform" class="form-horizontal" role="form" method="post" action="{{route("report")}}" enctype="multipart/form-data">
+                                                        {{csrf_field()}}
+                                                        <input id="idform" type="hidden" name="post_id" value="">
+                                                        <button class="btn btn-outline-danger" type="submit"><i class="fa fa-flag" aria-hidden="true"></i></button>
+                                                    </form>
+                                                @endif
+                                            @endguest
                                         </div>
                                     </div>
                                 </div>
@@ -144,16 +171,19 @@
                                 </ul>
                             </div>
                             <div class="modal-meta-bottom">
-                                <form id="commentform" class="form-horizontal" role="form" method="post" action="{{route('comment')}}" enctype="multipart/form-data">
-                                    {{csrf_field()}}
-                                    <div class="input-group">
-                                        <input id="commentcontent" type="text" class="form-control" name="comment" placeholder="Votre commentaire..." aria-label="Votre commentaire..." aria-describedby="basic-addon2" required>
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-primary" type="submit" ><i class="fa fa-comment" aria-hidden="true"></i></button>
+                                @guest
+                                @else
+                                    <form id="commentform" class="form-horizontal" role="form" method="post" action="{{route('comment')}}" enctype="multipart/form-data">
+                                        {{csrf_field()}}
+                                        <div class="input-group">
+                                            <input id="commentcontent" type="text" class="form-control" name="comment" placeholder="Votre commentaire..." aria-label="Votre commentaire..." aria-describedby="basic-addon2" value="" required>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary" type="submit" ><i class="fa fa-comment" aria-hidden="true"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <input id="idform" type="hidden" name="post_id" value="">
-                                </form>
+                                        <input id="idform" type="hidden" name="post_id" value="">
+                                    </form>
+                                @endguest
                             </div>
                         </div>
                     </div>
@@ -167,7 +197,4 @@
 @section('scripts')
     <script src="{{ asset('js/event.js') }}"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script>
-
-    </script>
 @endsection

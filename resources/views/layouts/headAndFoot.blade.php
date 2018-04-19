@@ -40,6 +40,9 @@ $cart = Auth::user()->cart;
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="{{route("events")}}">évènements</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{route("category")}}">Boutique</a>
                 </li>
                 <li class="nav-item">
@@ -71,14 +74,6 @@ $cart = Auth::user()->cart;
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" placeholder="Rechercher...">
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-secondary btn-number">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                </div>
                 @guest
                 @else
                 <a class="btn btn-success btn-sm ml-3" href="{{route("cart")}}">

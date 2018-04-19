@@ -112,8 +112,35 @@ function whosVisible() {
             })
                 .then(function (response) {
                     console.log(response);
+                    $('#commentcontent').val('');
                     getData();
-                    whosVisible()
+                    whosVisible();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
+        $( '#likeform' ).on( 'submit', function(e) {
+            e.preventDefault();
+            axios.post('/like/picture', {
+                postid: $("input#idform").val(),
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        });
+
+        $( '#reportform' ).on( 'submit', function(e) {
+            e.preventDefault();
+            axios.post('/report/picture', {
+                postid: $("input#idform").val(),
+            })
+                .then(function (response) {
+                    console.log(response);
                 })
                 .catch(function (error) {
                     console.log(error);

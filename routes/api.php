@@ -52,6 +52,7 @@ Route::resource('users', 'API\UsersAPIController')->only(['index', 'show']);
  * Everything is allowed except the edit and create through GET request
  */
 Route::resource('activities', 'API\ActivitiesAPIController')->except(['create', 'edit']);
+Route::get('url/activities', 'EventsController@jsonUrl');
 
 /**
  * Resource route for the requests about the users activities in the API
