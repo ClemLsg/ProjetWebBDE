@@ -1,5 +1,3 @@
-# ProjetWebBDE
-Projet web de l'exia 2018 sur la création d'un site en Laravel
 # WEB PROJECT
 
 To facilitate the organization and the communication of our BDE, we will realize a site that will manage promotion
