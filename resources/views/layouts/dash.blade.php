@@ -186,7 +186,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-                    <i class="fa fa-fw fa-sign-out"></i>Deconnexion</a>
+                    <i class="fa fa-fw fa-sign-out"></i>Quitter le tableau de bord</a>
             </li>
         </ul>
     </div>
@@ -215,10 +215,10 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Cliquez sur "Deconnxion" pour quitter la session.</div>
+            <div class="modal-body">Cliquez sur "Quitter" pour quitter la session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="{{route('logout')}}">Deconnexion</a>
+                <a class="btn btn-primary" href="{{route('index')}}">Quitter</a>
             </div>
         </div>
     </div>
