@@ -117,10 +117,17 @@ $.getJSON("http://localhost:8000/api/allproducts", function(data){
         products[i] = data[i].name;
     }
 });
-console.log(products);
 
 $( function() {
     $( "#research" ).autocomplete({
-        source: products
+        source: products,
+        select: function(event, ui){
+            location.href = 'localhost:8000/product/1';
+        }
     });
 } );
+
+function actionForm(value){
+    var elem = document.getElementById("formRedirectProduct");
+    elem.action = '/redirectProduct/' + value;
+}

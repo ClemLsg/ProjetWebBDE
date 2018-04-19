@@ -18,6 +18,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'IndexController@index')->name('index');
 
 Route::get('/product/{id}', 'ProductController@index')->name('product');
+Route::get('/redirectProduct/{name}', 'CategoryController@redirectToProduct')->name('redirectProduct');
 
 Route::get('/category', 'CategoryController@index')->name('category');
 

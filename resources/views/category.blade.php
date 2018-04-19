@@ -40,8 +40,9 @@
     <div class="row">
         <div class="col-12 col-sm-3">
             <nav class="navbar navbar-light bg-light mb-3">
-                <form class="form-inline">
-                    <input class="form-control mr-sm-2" id="research" type="search" placeholder="Search" aria-label="Search">
+                <form class="form-inline" action="" id="formRedirectProduct">
+                    <input onchange="actionForm(this.value)" class="form-control mr-sm-2" id="research" type="search" placeholder="" aria-label="Search">
+                    <input type="submit" class="btn btn-info" value="Search">
                 </form>
             </nav>
             <div class="card bg-light mb-3">

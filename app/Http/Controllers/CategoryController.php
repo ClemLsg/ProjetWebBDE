@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -45,5 +46,12 @@ class CategoryController extends Controller
         $products = Product::all('name');
 
         return response()->json($products, 200);
+    }
+
+    public function redirectToProduct($productName){
+
+        $product = DB::table('products')->where('name', '=', $productName)->get()->toArray();
+
+        return redirect()->route('product', $product[0]->id);
     }
 }
