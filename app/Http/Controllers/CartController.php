@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\CommandValid;
 use App\Order;
 use App\Product;
 use Illuminate\Http\Request;
@@ -84,7 +85,7 @@ class CartController extends Controller
             $order->products()->attach($prod->id, array('quantity' => $prod->cart->quantity));
             $user->cart()->detach($prod->id);
         }
-
+        $user->notify(new CommandValid());
         return redirect()->route('index');
 
     }

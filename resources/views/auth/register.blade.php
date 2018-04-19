@@ -66,10 +66,10 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="passwordconfirm" class="col-md-12 control-label">Confirmation le mot de passe</label>
+                            <label for="password_confirm" class="col-md-12 control-label">Confirmation le mot de passe</label>
 
                             <div class="col-md-12">
-                                <input id="passwordconfirm" type="password" class="form-control" name="passwordconfirm">
+                                <input id="password_confirm" type="password" class="form-control" name="password_confirm">
                             </div>
                         </div>
 
