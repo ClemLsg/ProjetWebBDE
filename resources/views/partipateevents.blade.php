@@ -13,36 +13,35 @@
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Commandes Passé</li>
+                <li class="breadcrumb-item active">Participants events</li>
             </ol>
             <!-- Area Chart Example-->
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fa fa-area-chart"></i> Commandes de goodies terminé</div>
+                    <i class="fa fa-area-chart"></i> Participants {{$event->name}}</div>
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table" style="text-align: center">
                         <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Prénom</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Status</th>
+
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($participant as $user)
                             <tr>
-                                <th scope="row"></th>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>Terminé <i class="fa fa-check" aria-hidden="true"></i></td>
-                            </tr>
+                                <th scope="row">{{$user->id}}</th>
+                                <td>{{$user->name}}</td>
+                                <td>{{$user->surname}}</td>
 
+
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer small text-muted">Listes des commandes à jour sans délais</div>
             </div>
         </div>
     </div>

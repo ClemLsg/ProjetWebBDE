@@ -41,7 +41,7 @@
                             <td><button type="button" class="btn btn-default" aria-label="Left Align" data-toggle="modal" data-target="#change{{$act->id}}" >
                                     <span class="fa fa-pencil-square-o fa-lg fa-2x" aria-hidden="true"></span>
                                 </button></td>
-                            <td style="text-align: center"><a class="btn btn-default" aria-label="Left Align" href="{{route('partipateevents')}}">
+                            <td style="text-align: center"><a class="btn btn-default" aria-label="Left Align" href="{{route('partipateevents', $act->id)}}">
                                     <span class="fa fa-user fa-2x" aria-hidden="true"></span>
                                 </a>
 
