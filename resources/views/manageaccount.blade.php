@@ -152,11 +152,11 @@
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="exampleTextarea">Nom</label>
-                            <input class="form-control" name="surname"/>
+                            <input class="form-control" name="surname" value="{{$user->surname}}"/>
                         </div>
                         <div class="form-group">
                             <label for="FirstNameTextArea">Prénom</label>
-                            <textarea class="form-control" name="firstname"></textarea>
+                            <input class="form-control" name="firstname" value="{{$user->name}}"></input>
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-radio custom-control-inline">

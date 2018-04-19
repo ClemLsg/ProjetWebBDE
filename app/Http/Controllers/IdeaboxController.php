@@ -14,7 +14,7 @@ class IdeaboxController extends Controller
 {
     public function index(){
 
-        $ideaboxes = IdeaBox::all();
+        $ideaboxes = IdeaBox::all()->sortByDesc('created_at');
         $bestboxes = IdeaBox::with('votes')->get()->sortByDesc(function($bestboxes){
             return $bestboxes->votes->count();
         })->take(3);

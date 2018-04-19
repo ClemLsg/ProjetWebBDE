@@ -15,6 +15,7 @@ $cart = Auth::user()->cart;
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="_token" content="{{ csrf_token() }}">
+    <link rel="icon" href="{{asset('/public/pictures/bde.ico')}}" type="image/gif" sizes="16x16">
 
     <title>BDE SHOP</title>
 
@@ -30,9 +31,12 @@ $cart = Auth::user()->cart;
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background: #8a1002 !important;">
     <div class="container">
-        <a class="navbar-brand" href="{{route("index")}}">BDE CESI ROUEN</a>
+        <a class="navbar-brand" href="{{route("index")}}">
+            <img src="{{asset('/public/pictures/bde.png')}}" width="30" height="30" class="d-inline-block align-top" alt="">
+            BDE CESI ROUEN
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -92,14 +96,14 @@ $cart = Auth::user()->cart;
 @yield('content')
 
 <!-- Footer -->
-<footer class="text-light">
+<footer class="text-light" style="background: #8a1002 !important;">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-lg-4 col-xl-3">
                 <h5>A Propos</h5>
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <p class="mb-0">
-                    Nous sommes une branche du BDS du CESI EXIA, une école d'ingénieur en informatique localisée à Mont Saint Aignan. L'objet de notre association est d'organiser des événements autour de l'esport.
+                    Le site du BDE du cesi de Rouen
                 </p>
             </div>
 
@@ -107,10 +111,8 @@ $cart = Auth::user()->cart;
                 <h5>Liens utiles</h5>
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <ul class="list-unstyled">
-                    <li><a href="https://ces-esport.fr">Site mère</a></li>
-                    <li><a href="{{route("shop")}}">Page d'accueil</a></li>
-                    <li><a href="{{route("user")}}">Votre compte</a></li>
-                    <li><a href="{{route("contact")}}">Notre contact</a></li>
+                    <li><a href="{{route("index")}}">Page d'accueil</a></li>
+                    <li><a href="{{route('user')}}">Votre compte</a></li>
                 </ul>
             </div>
 
@@ -119,25 +121,10 @@ $cart = Auth::user()->cart;
                 <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
                 <ul class="list-unstyled">
                     <li><a href="{{route("user")}}">Votre compte</a></li>
-                    <li><a href="">Vos commandes</a></li>
+                    <li><a href="{{route('commandes_user')}}">Vos commandes</a></li>
                     <li><a href="{{route("cart")}}">Votre panier</a></li>
-                    <li><a href="">Nos CGU</a></li>
                 </ul>
             </div>
-
-            <div class="col-md-4 col-lg-3 col-xl-3">
-                <h5>Contact</h5>
-                <hr class="bg-white mb-2 mt-0 d-inline-block mx-auto w-25">
-                <ul class="list-unstyled">
-                    <li><i class="fa fa-home mr-2"></i> Ces'ESport</li>
-                    <li><i class="fa fa-envelope mr-2"></i> paul.fontaine@viacesi.fr</li>
-                    <li><i class="fa fa-phone mr-2"></i> + 33 7 81 70 35 86</li>
-                </ul>
-            </div>
-            <div class="col-12 copyright mt-3">
-                <p class="float-left">
-                    <a href="#">Haut de page</a>
-                </p>
             </div>
         </div>
     </div>
