@@ -72,4 +72,4 @@ Route::get('/dashboard/manageaccount', 'manageaccountController@index')->name('m
 Route::post('dashboard/adduser','manageaccountController@addUser')->name('manageAccountAddUser');
 Route::post('dashboard/updateuser{id}', 'manageaccountController@updateUser')->name('manageAccountUpdateUser');
 
-Route::get('/dashboard/partipateevents', 'partipateeventsController@index')->name('partipateevents');
+Route::get('/dashboard/partipateevents/{id}', 'partipateeventsController@index')->name('partipateevents');

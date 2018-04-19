@@ -16,7 +16,7 @@ class Activitie extends Model
         'date'
     ];
 
-    public function users()
+    public function participants()
     {
         return $this->belongsToMany('App\User')->as('users');
     }
