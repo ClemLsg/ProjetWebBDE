@@ -40,7 +40,7 @@ $cart = Auth::user()->cart;
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("category")}}">Catégories</a>
+                    <a class="nav-link" href="{{route("category")}}">Boutique</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route("ideabox")}}">Boite a idées</a>

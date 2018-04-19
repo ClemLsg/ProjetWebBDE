@@ -11,7 +11,11 @@ class Category extends Model
         'name',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function products()
+
     {
         return $this->hasMany('App\Product');
     }
