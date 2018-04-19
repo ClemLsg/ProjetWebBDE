@@ -15,7 +15,7 @@ class PicturesTableSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
 
-        for($i=0; $i<20; $i++){
+        for($i=0; $i<30; $i++){
             Picture::create([
                 'url' => $faker->imageUrl(640,480)
             ]);

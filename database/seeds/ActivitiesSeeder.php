@@ -29,7 +29,7 @@ class ActivitiesSeeder extends Seeder
 
             $user = User::find($faker->numberBetween(1,20));
 
-            $pict = Picture::find($faker->numberBetween(2,20));
+            $pict = Picture::find($i + 2);
 
             $acti->participants()->save($user);
 
