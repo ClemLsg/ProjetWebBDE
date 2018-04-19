@@ -55,4 +55,16 @@ class manageproductController extends Controller
         return redirect()->back();
 
     }
+
+    public function addCat(request $request){
+
+        if($request->has("name")){
+            $roland = Category::create([
+                "name" => $request->input('name'),
+            ]);
+            $roland->save();
+        }
+        return redirect()->back();
+
+    }
 }

@@ -38,7 +38,7 @@ Route::post("/ideabox/propose", "IdeaboxController@addidea")->name('addidea');
 Route::post("/ideabox/transform/{id}", "IdeaboxController@createevent")->name('transformevent');
 Route::get("/ideabox/like/{id}", "IdeaboxController@like")->name('likeidea');
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middleware('bde');
 
 Route::post('/cart/add/{id}', 'CartController@add')->name('addtocart');
 
@@ -60,6 +60,8 @@ Route::post('/dashboard/event/deleteevent/{id}', 'manageeventController@deleteev
 
 Route::post('/dashboard/product/addinfo/', 'manageproductController@addProduct')->name('AddProduct');
 
+Route::post('/dashboard/product/addcat/', 'manageproductController@addCat')->name('AddCat');
+
 Route::post('/dashboard/product/addevent/', 'manageeventController@addEvent')->name('AddEvent');
 
 Route::get('/dashboard/pastcommand', 'pastcommandController@index')->name('pastcommand');
@@ -71,6 +73,7 @@ Route::get('/dashboard/manageevent', 'manageeventController@index')->name('manag
 Route::get('/dashboard/manageaccount', 'manageaccountController@index')->name('manageaccount');
 
 Route::post('dashboard/adduser','manageaccountController@addUser')->name('manageAccountAddUser');
+
 Route::post('dashboard/updateuser{id}', 'manageaccountController@updateUser')->name('manageAccountUpdateUser');
 
 Route::get('/dashboard/partipateevents/{id}', 'partipateeventsController@index')->name('partipateevents');
