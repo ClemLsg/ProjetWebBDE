@@ -62,6 +62,24 @@ class PictureAPIController extends BaseAPIController
     }
 
     /**
+     * Display all comments from a picture.
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function showComments($id)
+    {
+        $picture = Picture::find($id);
+        $comments = $picture->comments;
+
+        if(is_null($picture)){
+            return $this->sendError('Picture not found.',404);
+        }
+
+        return $this->sendPositiveResponse($comments->toArray(),'The wanted comments has been retrieved successfully.',200);
+    }
+
+    /**
      * Update the specified picture in the database.
      * Use of the Validator facade to make sure that the data sent by the user are correct.
      *

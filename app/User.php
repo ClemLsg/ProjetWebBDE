@@ -52,6 +52,11 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Picture')->as('likes');
     }
 
+    public function posts()
+    {
+        return $this->hasMany('App\Picture');
+    }
+
     public function cart()
     {
         return $this->belongsToMany('App\Product')->as('cart')->withPivot('quantity');

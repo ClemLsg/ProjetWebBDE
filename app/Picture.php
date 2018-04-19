@@ -16,7 +16,7 @@ class Picture extends Model
         return $this->belongsToMany('App\Product')->as('products');
     }
 
-    public function users()
+    public function likes()
     {
         return $this->belongsToMany('App\User')->as('users');
     }
@@ -39,6 +39,11 @@ class Picture extends Model
     public function activities()
     {
         return $this->belongsTo('App\Activitie');
+    }
+
+    public function postedby()
+    {
+        return $this->belongsTo('App\User','user_id');
     }
 
 }

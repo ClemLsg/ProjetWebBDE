@@ -76,4 +76,8 @@ Route::post('dashboard/adduser','manageaccountController@addUser')->name('manage
 
 Route::post('dashboard/updateuser{id}', 'manageaccountController@updateUser')->name('manageAccountUpdateUser');
 
+Route::get('/dashboard/partipateevents', 'partipateeventsController@index')->name('partipateevents');
+
+Route::get('/event/{id}', 'EventController@index')->name('event');
+Route::post('/commenton/event', 'EventController@comment')->name('comment');
 Route::get('/dashboard/partipateevents/{id}', 'partipateeventsController@index')->name('partipateevents');

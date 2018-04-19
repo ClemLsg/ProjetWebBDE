@@ -38,7 +38,7 @@
                             <p>{{$firstevent->description}}</p>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-primary">Lire Plus &rarr;</a>
+                    <a href="{{route("event", $firstevent->id)}}" class="btn btn-primary">Lire Plus &rarr;</a>
                 </div>
                 <div class="card-footer text-muted">
                     Créé le {{ $firstevent->created_at->format('d M Y - H:i') }} par

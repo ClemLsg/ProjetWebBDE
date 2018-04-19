@@ -39,12 +39,13 @@ Route::resource('orders', 'API\OrderAPIController')->only(['index', 'show', 'sto
  * Everything is allowed except the edit and create through GET request
  */
 Route::resource('pictures', 'API\PictureAPIController')->except(['create', 'edit']);
+Route::get('image/comments/{id}', 'API\PictureAPIController@showComments');
 
 /**
  * Resource route for the requests about the users in the API.
  * Only the GET /api/users and GET /api/users/{user} are allowed.
  */
-Route::resource('users', 'API\UsersApiController')->only(['index', 'show']);
+Route::resource('users', 'API\UsersAPIController')->only(['index', 'show']);
 
 /**
  * Resource route for the requests about the activities in the API
