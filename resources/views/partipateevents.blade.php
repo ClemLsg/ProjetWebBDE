@@ -20,7 +20,7 @@
                 <div class="card-header">
                     <i class="fa fa-area-chart"></i> Participants {{$event->name}}</div>
                 <div class="card-body">
-                    <table class="table" style="text-align: center">
+                    <table class="table" style="text-align: center" id="printTable">
                         <thead class="thead-light">
                         <tr>
                             <th scope="col">#</th>
@@ -42,7 +42,27 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="card-header" style="text-align: center">
+
+                        <button class="btn btn-default" onclick="printData()"><i class="fa fa-download" aria-hidden="true"></i></button>
+
+                </div>
             </div>
+
         </div>
     </div>
+    <script >
+        function printData()
+        {
+            var divToPrint=document.getElementById("printTable");
+            newWin= window.open("");
+            newWin.document.write(divToPrint.outerHTML);
+            newWin.print();
+            newWin.close();
+        }
+
+        $('a').on('click',function(){
+            printData();
+        })
+    </script>
 @endsection
