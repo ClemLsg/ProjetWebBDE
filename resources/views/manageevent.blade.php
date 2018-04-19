@@ -125,7 +125,7 @@
                             <textarea class="form-control" name="desc" id="exampleTextarea" rows="3"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="exampleTextarea">Prix du produit</label>
+                            <label for="exampleTextarea">Prix de l'event</label>
                             <input class="form-control" type="number" name="price" value="0" id="example-number-input">
                         </div>
                         <div class="form-group row">

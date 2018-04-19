@@ -8,6 +8,7 @@ use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Schema;
+use Intervention\Image\Facades\Image;
 
 class IdeaboxController extends Controller
 {
@@ -80,9 +81,8 @@ class IdeaboxController extends Controller
             'url' => $filename
         ]);
 
+        Auth::user()->posts()->save($pict);
         $event->pictures()->save($pict);
-
-        $event->save();
 
         Schema::disableForeignKeyConstraints();
         IdeaBox::find($id)->votes()->detach();

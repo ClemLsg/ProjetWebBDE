@@ -57,7 +57,7 @@ function getData() {
     let request4 = new XMLHttpRequest();
     request4.open("GET", "/api/likes", false);
     request4.send(null);
-    likes = JSON.parse(request4.responseText);
+    likeslist = JSON.parse(request4.responseText);
 }
 
 function showComments(id) {
@@ -121,7 +121,7 @@ function whosVisible() {
 
         likes = document.getElementById("likes");
         likes.innerHTML = '';
-        likes.innerHTML = likes[pict[0]] + ' ' + '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>';
+        likes.innerHTML = likeslist[pict[0].id] + ' ' + '<i class="fa fa-thumbs-o-up" aria-hidden="true"></i>';
 
         idform = document.getElementById('idform');
         idform.setAttribute('value', idimg)
@@ -160,6 +160,8 @@ function whosVisible() {
             })
                 .then(function (response) {
                     console.log(response);
+                    getData();
+                    whosVisible();
                 })
                 .catch(function (error) {
                     console.log(error);

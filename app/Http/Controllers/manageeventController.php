@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activitie;
 use App\Picture;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class manageeventController extends Controller
 {
@@ -17,7 +18,7 @@ class manageeventController extends Controller
 
     public function deleteevent(request $request, $id){
         $event = Activitie::findOrFail($id);
-        $event->users()->detach();
+        $event->participants()->detach();
         $event->delete();
 
         return redirect()->back();
@@ -27,6 +28,8 @@ class manageeventController extends Controller
     public function addEvent(request $request){
 
         if($request->has("name") && $request->has("desc") && $request->has("cat") && $request->has("price") && $request->has("date")){
+
+            $user = \Auth::user();
 
             if($request->has("cat")=="Recurrent"){
                 $cat = 1;
@@ -48,12 +51,20 @@ class manageeventController extends Controller
 
             $name = str_replace($a, $b, $event->name);
             $image = $request->file('image');
-            $filename = $name . '.' . $image->getClientOriginalExtension();
-            $image->move('public/pictures/activitie',$filename);
+            $filename = 'public/pictures/activitie/' . $name . time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image->getRealPath())->resize(640, 480, function($constraint)
+            {
+                $constraint->aspectRatio();
+            })->save($filename);
 
             $pict = Picture::create([
-                'url' => 'public/pictures/activitie'.$filename
+                'url' => $filename
             ]);
+
+            $user->posts()->save($pict);
+            $user->events()->save($event);
+
+            $event->pictures()->save($pict);
 
             $event->pictures()->save($pict);
 

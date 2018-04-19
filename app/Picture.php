@@ -38,7 +38,7 @@ class Picture extends Model
 
     public function activities()
     {
-        return $this->belongsTo('App\Activitie');
+        return $this->belongsTo('App\Activitie', 'activitie_id');
     }
 
     public function postedby()

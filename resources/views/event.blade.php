@@ -30,7 +30,7 @@
                             </div>
                         </div>
                         <div class="row row-striped">
-                            <div class="col-sm-2">
+                            <div class="col-sm-3">
                                 @guest
                                 @else
                                     @if(Auth::user()->activities->contains($event->id))
