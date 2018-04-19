@@ -20,5 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductsTableSeeder::class);
         $this->call(CommentsTableSeeder::class);
         $this->call(IdeaBoxTableSeeder::class);
+        $this->call(addUserToPictureSeeder::class);
     }
 }

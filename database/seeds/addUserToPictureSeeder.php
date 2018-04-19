@@ -1,9 +1,10 @@
 <?php
 
 use App\Picture;
+use App\User;
 use Illuminate\Database\Seeder;
 
-class PicturesTableSeeder extends Seeder
+class addUserToPictureSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,13 +13,15 @@ class PicturesTableSeeder extends Seeder
      */
     public function run()
     {
-
         $faker = \Faker\Factory::create();
 
         for($i=0; $i<30; $i++){
-            Picture::create([
-                'url' => $faker->imageUrl(640,480),
-            ]);
+
+            $pict = Picture::find($i+1);
+
+            $user = User::find($faker->numberBetween(1,20));
+
+            $user->posts()->save($pict);
         }
     }
 }

@@ -8,7 +8,7 @@ class Picture extends Model
 {
     //
     protected $fillable = [
-        'url',
+        'url', 'user_id'
     ];
 
     public function products()
