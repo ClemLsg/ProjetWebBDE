@@ -120,10 +120,7 @@ $.getJSON("http://localhost:8000/api/allproducts", function(data){
 
 $( function() {
     $( "#research" ).autocomplete({
-        source: products,
-        select: function(event, ui){
-            location.href = 'localhost:8000/product/1';
-        }
+        source: products
     });
 } );
 
