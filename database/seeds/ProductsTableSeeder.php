@@ -21,7 +21,8 @@ class ProductsTableSeeder extends Seeder
             $prod = Product::create([
                 'name' => $faker->domainWord,
                 'price' => $faker->numberBetween(0,70),
-                'description' => $faker->text(500)
+                'description' => $faker->text(500),
+                'stock' => $faker->numberBetween(0,40)
             ]);
             $pict = Picture::find($faker->numberBetween(2,20));
 
