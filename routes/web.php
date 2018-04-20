@@ -50,31 +50,31 @@ Route::get('/cart/payment', 'PaymentController@index')->name('payment');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout' );
 
-Route::get('/dashboard/command', 'DashcommandController@index')->name('dashcommand');
+Route::get('/dashboard/command', 'DashcommandController@index')->name('dashcommand')->middleware('bde');
 
-Route::post('/dashboard/command/changestatus/{id}', 'DashcommandController@changeStatus')->name('ChangeStatusCommand');
+Route::post('/dashboard/command/changestatus/{id}', 'DashcommandController@changeStatus')->name('ChangeStatusCommand')->middleware('bde');
 
-Route::post('/dashboard/product/changeinfo/{id}', 'manageproductController@changeInfo')->name('ChangeInfoProduct');
+Route::post('/dashboard/product/changeinfo/{id}', 'manageproductController@changeInfo')->name('ChangeInfoProduct')->middleware('bde');
 
-Route::post('/dashboard/event/deleteevent/{id}', 'manageeventController@deleteevent')->name('DeleteEvent');
+Route::post('/dashboard/event/deleteevent/{id}', 'manageeventController@deleteevent')->name('DeleteEvent')->middleware('bde');
 
-Route::post('/dashboard/product/addinfo/', 'manageproductController@addProduct')->name('AddProduct');
+Route::post('/dashboard/product/addinfo/', 'manageproductController@addProduct')->name('AddProduct')->middleware('bde');
 
-Route::post('/dashboard/product/addcat/', 'manageproductController@addCat')->name('AddCat');
+Route::post('/dashboard/product/addcat/', 'manageproductController@addCat')->name('AddCat')->middleware('bde');
 
-Route::post('/dashboard/product/addevent/', 'manageeventController@addEvent')->name('AddEvent');
+Route::post('/dashboard/product/addevent/', 'manageeventController@addEvent')->name('AddEvent')->middleware('bde');
 
-Route::get('/dashboard/pastcommand', 'pastcommandController@index')->name('pastcommand');
+Route::get('/dashboard/pastcommand', 'pastcommandController@index')->name('pastcommand')->middleware('bde');
 
-Route::get('/dashboard/manageproduct', 'manageproductController@index')->name('manageproduct');
+Route::get('/dashboard/manageproduct', 'manageproductController@index')->name('manageproduct')->middleware('bde');
 
-Route::get('/dashboard/manageevent', 'manageeventController@index')->name('manageevent');
+Route::get('/dashboard/manageevent', 'manageeventController@index')->name('manageevent')->middleware('bde');
 
-Route::get('/dashboard/manageaccount', 'manageaccountController@index')->name('manageaccount');
+Route::get('/dashboard/manageaccount', 'manageaccountController@index')->name('manageaccount')->middleware('bde');
 
-Route::post('dashboard/adduser','manageaccountController@addUser')->name('manageAccountAddUser');
+Route::post('dashboard/adduser','manageaccountController@addUser')->name('manageAccountAddUser')->middleware('bde');
 
-Route::post('dashboard/updateuser{id}', 'manageaccountController@updateUser')->name('manageAccountUpdateUser');
+Route::post('dashboard/updateuser{id}', 'manageaccountController@updateUser')->name('manageAccountUpdateUser')->middleware('bde');
 
 Route::get('/event/{id}', 'EventController@index')->name('event');
 Route::post('/commenton/event', 'EventController@comment')->name('comment');
@@ -87,4 +87,4 @@ Route::get('/events', 'EventsController@index')->name('events');
 
 
 
-Route::get('/dashboard/partipateevents/{id}', 'partipateeventsController@index')->name('partipateevents');
+Route::get('/dashboard/partipateevents/{id}', 'partipateeventsController@index')->name('partipateevents')->middleware('bde');
