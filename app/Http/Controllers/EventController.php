@@ -99,10 +99,11 @@ class EventController extends Controller
         $pictures = Picture::all();
         $loop = 1;
         foreach ($pictures as $pict){
-            $likes[$loop] = $pict->likes->count();
+            $likes[$pict->id] = $pict->likes->count();
             $loop++;
         }
 
         return response()->json($likes);
     }
+
 }

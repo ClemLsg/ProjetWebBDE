@@ -16,7 +16,7 @@ class AddForeignOnComments extends Migration
         //
         Schema::table('comments', function (Blueprint $table) {
             $table->integer('picture_id')->unsigned();
-            $table->foreign('picture_id')->references('id')->on('pictures');
+            $table->foreign('picture_id')->references('id')->on('pictures')->onDelete('cascade');
         });
     }
 

@@ -142,11 +142,6 @@ function whosVisible() {
             })
                 .then(function (response) {
                     console.log(response);
-                    $('#commentcontent').val('');
-                    setTimeout(function(){
-                        getData();
-                        whosVisible();
-                    }, 300);
                 })
                 .catch(function (error) {
                     console.log(error);

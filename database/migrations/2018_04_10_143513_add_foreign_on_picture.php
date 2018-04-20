@@ -16,7 +16,7 @@ class AddForeignOnPicture extends Migration
         //
         Schema::table('pictures', function (Blueprint $table) {
             $table->integer('activitie_id')->unsigned()->nullable();
-            $table->foreign('activitie_id')->references('id')->on('activities');
+            $table->foreign('activitie_id')->references('id')->on('activities')->onDelete('cascade');
         });
     }
 

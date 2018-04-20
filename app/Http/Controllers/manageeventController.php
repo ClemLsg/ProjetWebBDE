@@ -19,6 +19,10 @@ class manageeventController extends Controller
     public function deleteevent(request $request, $id){
         $event = Activitie::findOrFail($id);
         $event->participants()->detach();
+        foreach ($event->pictures as $pict){
+            $pict->comments()->delete();
+        }
+        $event->pictures()->delete();
         $event->delete();
 
         return redirect()->back();
