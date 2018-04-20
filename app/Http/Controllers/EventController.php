@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Activitie;
 use App\Comment;
+use App\Notifications\UserReportEvent;
 use App\Picture;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -85,11 +86,11 @@ class EventController extends Controller
 
     public function report(request $request){
         $request->all();
-
+        $user = Auth::user();
         $pict = Picture::findOrFail($request->input('postid'));
         $pict->reason = 'La photo est offensive';
         $pict->save();
-
+        $user->notify(new UserReportEvent());
         return response()->json(['responseText' => 'Success!'], 200);
 
     }
